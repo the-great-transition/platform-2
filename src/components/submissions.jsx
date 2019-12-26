@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+var _ = require("lodash");
+
 class Submissions extends Component {
   state = {};
   render() {
