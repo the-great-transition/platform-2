@@ -45,6 +45,7 @@ class Submissions extends Component {
         const r = {
           id: d.subm_id,
           average: d.average,
+          rated: d.rated,
           slug: d.subm_slug,
           submittedby: toHTML(d.user_name),
           title: "#" + d.subm_id + " " + toHTML(d.subm_title),
@@ -54,7 +55,9 @@ class Submissions extends Component {
           theme: d.subm_theme,
           orientation: d.subm_orientation,
           type: d.subm_type,
-          status: d.subm_status
+          status: d.subm_status,
+          parts: d.parts,
+          comms: d.comms
         };
         return r;
       });

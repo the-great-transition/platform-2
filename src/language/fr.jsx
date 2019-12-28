@@ -33,6 +33,7 @@ export const submissions = {
     { title: "De", field: "submittedby", filtering: false },
     { title: "Titre", field: "title", filtering: false },
     { title: "Moy", field: "average", filtering: false },
+    { title: "Cotée", field: "rated", lookup: { true: "Oui", false: "Non" } },
     {
       title: "Langue",
       field: "language",
@@ -76,29 +77,31 @@ export const submission = {
   next: "Suivante",
   escape: "ESC",
   submittedon: "En date du ",
+  myRating: "Mon évaluation : ",
+  averageRating: "Évaluation moyenne : ",
   by: "de",
   type: {
     label: submissions.columns[0].title,
     lookup: submissions.columns[0].lookup
   },
-  submittedby: submissions.columns[2].title,
-  title: submissions.columns[3].title,
+  submittedby: submissions.columns[1].title,
+  title: submissions.columns[2].title,
   description: "Description",
   language: {
-    label: submissions.columns[4].title,
-    lookup: submissions.columns[4].lookup
-  },
-  level: {
     label: submissions.columns[5].title,
     lookup: submissions.columns[5].lookup
   },
-  theme: {
+  level: {
     label: submissions.columns[6].title,
     lookup: submissions.columns[6].lookup
   },
-  orientation: {
+  theme: {
     label: submissions.columns[7].title,
     lookup: submissions.columns[7].lookup
+  },
+  orientation: {
+    label: submissions.columns[8].title,
+    lookup: submissions.columns[8].lookup
   },
   status: {
     0: "Soumise",
@@ -107,9 +110,30 @@ export const submission = {
     3: "Confirmée",
     4: "Annulée"
   },
-  myRating: "Mon évaluation : ",
-  averageRating: "Évaluation moyenne : ",
-  details: "Détails"
+  commsnum: "Nombre de communications",
+  part: "Panéliste",
+  chair: "Animateur·trice",
+  comm: "Communication"
+};
+
+export const part = {
+  fname: "Prénom",
+  lname: "Nom de famille",
+  email: "Courriel",
+  affiliation: "Implication(s) et affiliation(s)",
+  city: "Ville",
+  country: "Pays",
+  gender: "Genre",
+  minority: "Cette personne est...",
+  bio: "Biography"
+};
+
+export const comments = {
+  comments: "Commentaires",
+  myComment: "Ajouter un commentaire",
+  submit: "Soumettre",
+  delete: "Supprimer",
+  none: "Aucun commentaire pour l'instant."
 };
 
 export const admin = {

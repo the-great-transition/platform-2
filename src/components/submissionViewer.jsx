@@ -92,6 +92,7 @@ class SubmissionViewer extends Component {
     return this.state.submission ? (
       <div className="border border-light shadow" style={{ padding: 10 }}>
         <Submission
+          user={this.props.user}
           data={this.state.submission}
           location={this.props.location}
           navigationDisabled={this.state.navigationDisabled}

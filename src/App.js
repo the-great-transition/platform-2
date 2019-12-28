@@ -38,13 +38,26 @@ class App extends Component {
               <Nav user={this.state.user} />
               <ToastContainer autoClose={3000} position="top-center" />
               <Switch>
-                <ProtectedRoute path="/dashboard" component={Dashboard} />
                 <ProtectedRoute
+                  user={this.state.user}
+                  path="/dashboard"
+                  component={Dashboard}
+                />
+                <ProtectedRoute
+                  user={this.state.user}
                   path="/submissions/:id"
                   component={SubmissionViewer}
                 />
-                <ProtectedRoute path="/submissions" component={Submissions} />
-                <ProtectedRoute path="/admin" component={Admin} />
+                <ProtectedRoute
+                  user={this.state.user}
+                  path="/submissions"
+                  component={Submissions}
+                />
+                <ProtectedRoute
+                  user={this.state.user}
+                  path="/admin"
+                  component={Admin}
+                />
                 <ProtectedRoute path="/logout" component={Logout} />
                 <ProtectedRoute path="/erratum" component={Erratum} />
                 <ProtectedRoute path="/" exact component={Submissions} />

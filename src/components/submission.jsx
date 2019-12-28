@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import PanelSubmission from "./panelSubmission";
+import Comments from "./comments";
 import Helmet from "react-helmet";
 import TextDisplay from "../common/textDisplay";
 import ButtonGroup from "../common/buttonGroup";
 import { toHTML } from "../utilities/string";
 import { submission as lang_submission } from "../language/fr";
+import Participant from "./participant";
 
 class Submission extends Component {
   componentDidMount() {
@@ -124,59 +127,93 @@ class Submission extends Component {
         </div>
         <div className="row">
           <div className="col-7">
+            <h4>{toHTML(data.subm_title)}</h4>
             <div className="row">
-              <div className="col">
-                <h4>{toHTML(data.subm_title)}</h4>
-                <div className="row">
-                  <div className="col-6">
-                    <TextDisplay
-                      name="language"
-                      label={lang_submission.language.label}
-                      value={
-                        lang_submission.language.lookup[data.subm_language]
-                      }
-                    />
-                    <TextDisplay
-                      name="orientation"
-                      label={lang_submission.orientation.label}
-                      value={
-                        lang_submission.orientation.lookup[
-                          data.subm_orientation
-                        ]
-                      }
-                    />
-                  </div>
-                  <div className="col-6">
-                    <TextDisplay
-                      name="theme"
-                      label={lang_submission.theme.label}
-                      value={lang_submission.theme.lookup[data.subm_theme]}
-                    />
-                    <TextDisplay
-                      name="level"
-                      label={lang_submission.level.label}
-                      value={lang_submission.level.lookup[data.subm_level]}
-                    />
-                  </div>
-                </div>
+              <div className="col-6">
                 <TextDisplay
-                  name="description"
-                  label={lang_submission.description}
-                  value={toHTML(data.subm_description)}
+                  name="language"
+                  label={lang_submission.language.label}
+                  value={lang_submission.language.lookup[data.subm_language]}
+                />
+                <TextDisplay
+                  name="orientation"
+                  label={lang_submission.orientation.label}
+                  value={
+                    lang_submission.orientation.lookup[data.subm_orientation]
+                  }
                 />
               </div>
+              <div className="col-6">
+                <TextDisplay
+                  name="theme"
+                  label={lang_submission.theme.label}
+                  value={lang_submission.theme.lookup[data.subm_theme]}
+                />
+                {data.subm_type !== "1" ? (
+                  <TextDisplay
+                    name="level"
+                    label={lang_submission.level.label}
+                    value={lang_submission.level.lookup[data.subm_level]}
+                  />
+                ) : (
+                  <TextDisplay
+                    name="level"
+                    label={lang_submission.commsnum}
+                    value={data.comms.length}
+                  />
+                )}
+              </div>
             </div>
-            <div className="row"></div>
+            <TextDisplay
+              name="description"
+              label={lang_submission.description}
+              value={toHTML(data.subm_description)}
+            />
+            {data.chair ? (
+              <TextDisplay
+                name="chair"
+                label={lang_submission.chair}
+                value={toHTML(
+                  data.chair.part_fname + " " + data.chair.part_lname
+                )}
+              />
+            ) : (
+              ""
+            )}
           </div>
           <div className="col-5">
-            <div className="row">
-              <div className="col"></div>
-            </div>
-            <div className="row">
-              <div className="col"></div>
-            </div>
+            <Comments user={this.props.user} subm_id={data.subm_id} />
           </div>
         </div>
+        {data.subm_type !== "1" ? (
+          <div className="row">
+            <div className="col-7">
+              {" "}
+              {data.parts.map((p, k) => {
+                return (
+                  <div>
+                    <h4>
+                      {lang_submission.part} #{k + 1}
+                    </h4>
+                    <Participant key={k} data={p} />
+                  </div>
+                );
+              })}
+            </div>
+            <div className="col-5"></div>
+          </div>
+        ) : (
+          data.comms.map((c, k) => {
+            return (
+              <div>
+                <h4>
+                  {lang_submission.comm} #{k + 1}
+                </h4>
+                <PanelSubmission key={k} data={c} />
+              </div>
+            );
+          })
+        )}
       </React.Fragment>
     );
   }

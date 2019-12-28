@@ -37,6 +37,19 @@ export async function postResource(type, data) {
   }
 }
 
+export async function deleteResource(type, id) {
+  const URL = id ? apiURL + type + "/" + id : apiURL + type;
+  try {
+    const response = await http.delete(URL);
+    toast.success(lang_http.delete_success);
+    return response["data"];
+  } catch (ex) {
+    console.log(ex);
+    toast.error(lang_http.delete_fail);
+    return null;
+  }
+}
+
 export async function postSubm(data) {
   let URL = apiURL + "subm";
   if (data["id"]) {
