@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import Submission from "./submission";
-import { getResource } from "../services/resourceService";
+import { getResource, postResource } from "../services/resourceService";
 import { navPreviousNext } from "../utilities/array";
 
 class SubmissionViewer extends Component {
   state = {
     submission: false,
+    ratings: { average: "0", myRating: null },
     navigationDisabled: { previous: true, next: true }
   };
 
@@ -20,9 +21,53 @@ class SubmissionViewer extends Component {
     if (submission === null) {
       this.props.history.goBack();
     } else {
-      this.setState({ submission });
+      this.setState({ submission }, () => {
+        this.getRatings();
+      });
     }
   }
+
+  async treatRatings() {
+    try {
+      const ratings = await getResource(
+        "rating",
+        this.state.submission.subm_id
+      );
+      ratings["average"] = Math.ceil(ratings["average"] * 100) / 100;
+      this.setState({ ratings });
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
+  getRatings = () => {
+    this.treatRatings(this.state.submission.subm_id);
+  };
+
+  async postRating() {
+    const data = {
+      id: this.state.submission.subm_id,
+      rating: this.state.ratings.myRating
+    };
+    await postResource("rating", data);
+    this.treatRatings();
+  }
+
+  handleRating = ({ currentTarget: input }) => {
+    console.log("called");
+    const { value } = input;
+    const oldvalue = this.state.ratings.myRating;
+    const { ratings } = this.state;
+    ratings.myRating = ratings.myRating === value ? 0 : value;
+    this.setState({ ratings }, () => {
+      try {
+        this.postRating();
+      } catch (ex) {
+        ratings["myRating"] = oldvalue;
+        this.setState({ ratings });
+      }
+    });
+  };
 
   handleNav = object => {
     this.props.history.replace(object);
@@ -53,6 +98,10 @@ class SubmissionViewer extends Component {
           onNav={this.handleNav}
           onNavDisable={this.handleNavDisable}
           onNavEscape={this.handleEscape}
+          getRatings={this.getRatings}
+          postRating={this.postRating}
+          onRating={this.handleRating}
+          ratings={this.state.ratings}
         />
       </div>
     ) : (

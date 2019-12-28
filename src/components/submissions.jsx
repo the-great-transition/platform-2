@@ -1,16 +1,19 @@
 import React, { Component } from "react";
-import MaterialTable from "material-table";
 import Helmet from "react-helmet";
+import MaterialTable from "material-table";
+import { MTableToolbar } from "material-table";
 import { getResource } from "../services/resourceService";
 import { toHTML, shorten } from "./../utilities/string";
 import {
   materialTable as lang_table,
   submissions as lang_submissions
 } from "../language/fr";
+import ButtonGroup from "../common/buttonGroup";
 
 class Submissions extends Component {
   state = {
     submissions: {},
+    submissionsType: "0",
     selectedRow: null
   };
 
@@ -28,16 +31,23 @@ class Submissions extends Component {
     this.setState({ submissions });
   }
 
+  handleSelect = e => {
+    console.log("yes");
+    const { value: submissionsType } = e.currentTarget;
+    this.setState({ submissionsType });
+  };
+
   render() {
     const { submissions } = this.state;
-    let data = [];
+    let unfiltered = [];
     if (submissions && submissions.length >= 0) {
-      data = submissions.map((d, i) => {
+      unfiltered = submissions.map((d, i) => {
         const r = {
           id: d.subm_id,
+          average: d.average,
           slug: d.subm_slug,
           submittedby: toHTML(d.user_name),
-          title: toHTML(d.subm_title),
+          title: "#" + d.subm_id + " " + toHTML(d.subm_title),
           description: toHTML(d.subm_description),
           language: d.subm_language,
           level: d.subm_level,
@@ -49,6 +59,9 @@ class Submissions extends Component {
         return r;
       });
     }
+    let data = unfiltered.filter(d => {
+      return d.status === this.state.submissionsType;
+    });
     return (
       <div>
         <Helmet>
@@ -63,9 +76,7 @@ class Submissions extends Component {
           detailPanel={rowData => {
             return (
               <div style={{ padding: 20 }}>
-                <h5>
-                  {lang_submissions.description} : {rowData.title}
-                </h5>
+                <h5>{rowData.title}</h5>
                 {shorten(rowData.description, 1000)}
               </div>
             );
@@ -88,6 +99,23 @@ class Submissions extends Component {
             padding: "dense",
             pageSize: 10,
             pageSizeOptions: [5, 10, 20, 50, 100]
+          }}
+          components={{
+            Toolbar: props => (
+              <div>
+                <MTableToolbar
+                  {...props}
+                  title={
+                    <ButtonGroup
+                      name="submissionsType"
+                      array={lang_submissions.type}
+                      selected={this.state.submissionsType}
+                      onSelect={this.handleSelect}
+                    />
+                  }
+                />
+              </div>
+            )
           }}
         />
       </div>

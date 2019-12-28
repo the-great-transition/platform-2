@@ -2,59 +2,20 @@ import React, { Component } from "react";
 import Helmet from "react-helmet";
 import TextDisplay from "../common/textDisplay";
 import ButtonGroup from "../common/buttonGroup";
-import { getResource, postResource } from "../services/resourceService";
 import { toHTML } from "../utilities/string";
 import { submission as lang_submission } from "../language/fr";
 
 class Submission extends Component {
-  state = {
-    ratings: { average: 0, myRating: null }
-  };
-
   componentDidMount() {
-    this.getRatings();
+    this.props.getRatings(this.props.data.subm_id);
     if (this.props.location.tableArray) {
       const { location } = this.props;
       this.props.onNavDisable(location.tableArray, location.tableIndex);
     }
   }
 
-  treatRatings(ratings) {
-    ratings["average"] = Math.ceil(ratings["average"] * 100) / 100;
-    this.setState({ ratings });
-  }
-
-  async getRatings() {
-    const ratings = await getResource("rating", this.props.data.subm_id);
-    this.treatRatings(ratings);
-  }
-
-  async postRating() {
-    const data = {
-      id: this.props.data.subm_id,
-      rating: this.state.ratings.myRating
-    };
-    const ratings = await postResource("rating", data);
-    this.treatRatings(ratings);
-  }
-
   handleChange = e => {
     return null;
-  };
-
-  handleRating = ({ currentTarget: input }) => {
-    const { value } = input;
-    const oldvalue = this.state.ratings.myRating;
-    const { ratings } = this.state;
-    ratings.myRating = ratings.myRating === value ? 0 : value;
-    this.setState({ ratings }, () => {
-      try {
-        this.postRating();
-      } catch (ex) {
-        ratings["myRating"] = oldvalue;
-        this.setState({ ratings });
-      }
-    });
   };
 
   handleNav = e => {
@@ -79,7 +40,7 @@ class Submission extends Component {
   };
 
   render() {
-    const { data } = this.props;
+    const { data, ratings } = this.props;
     const { navigationDisabled } = this.props;
     const navigationHide =
       navigationDisabled.previous && navigationDisabled.next ? true : false;
@@ -145,19 +106,20 @@ class Submission extends Component {
               <b>{lang_submission.myRating}</b>
             </label>
             <ButtonGroup
+              id={data.subm_id}
               name="myRating"
               array={[
-                { label: 1, value: 1 },
-                { label: 2, value: 2 },
-                { label: 3, value: 3 },
-                { label: 4, value: 4 },
-                { label: 5, value: 5 }
+                { label: 1, value: "1" },
+                { label: 2, value: "2" },
+                { label: 3, value: "3" },
+                { label: 4, value: "4" },
+                { label: 5, value: "5" }
               ]}
-              selected={this.state.ratings.myRating}
-              onRating={this.handleRating}
+              selected={ratings.myRating}
+              onSelect={this.props.onRating}
             />
             {lang_submission.averageRating}
-            <b>{this.state.ratings.average}</b>
+            <b>{ratings.average}</b>
           </div>
         </div>
         <div className="row">

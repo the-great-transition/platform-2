@@ -30,9 +30,9 @@ export const submissions = {
       field: "type",
       lookup: { 0: "Communication", 1: "Panel", 2: "Atelier" }
     },
-    { title: "#", field: "id", filtering: false },
     { title: "De", field: "submittedby", filtering: false },
     { title: "Titre", field: "title", filtering: false },
+    { title: "Moy", field: "average", filtering: false },
     {
       title: "Langue",
       field: "language",
@@ -61,6 +61,13 @@ export const submissions = {
       field: "orientation",
       lookup: { 0: "Aucune", 1: "Stratégie", 2: "Modèles" }
     }
+  ],
+  type: [
+    { label: "Soumises", value: "0" },
+    { label: "Rejetées", value: "1" },
+    { label: "Acceptées", value: "2" },
+    { label: "Confirmées", value: "3" },
+    { label: "Annulées", value: "4" }
   ]
 };
 
