@@ -7,10 +7,10 @@ import Users from "./users";
 const Admin = () => {
   return (
     <div className="row">
-      <div className="col-3">
+      <div className="col-md-3">
         <AdminMenu />
       </div>
-      <div className="col">
+      <div className="col-md-6">
         <Switch>
           <Route path="/admin/users" component={Users} />
           <Route path="/admin" component={Config} />

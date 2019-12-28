@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Select from "react-select";
 import Joi from "joi-browser";
 import User from "./user";
-import { getUsers, postUser } from "../services/userService";
-import { admin as lang_admin } from "../language/fr";
+import { getResource, postResource } from "../services/resourceService";
+import { admin as lang_admin, trslError } from "../language/fr";
 
 var _ = require("lodash");
 
@@ -30,7 +30,7 @@ class Users extends Component {
   }
 
   async populate() {
-    const users = await getUsers();
+    const users = await getResource("user");
     this.setState({ users, errors: {} });
   }
 
@@ -50,7 +50,7 @@ class Users extends Component {
     const { error } = Joi.validate(this.state.user, this.schema, options);
     if (!error) return null;
     const errors = {};
-    for (let item of error.details) errors[item.path[0]] = item;
+    for (let item of error.details) errors[item.path[0]] = trslError(item);
     return errors;
   };
 
@@ -59,7 +59,7 @@ class Users extends Component {
     this.setState({ errors: errors || {} });
     if (errors) return;
     const { user } = this.state;
-    const response = await postUser(user);
+    const response = await postResource("user", user);
     if (response) {
       const userSelected = {
         label: user.name,

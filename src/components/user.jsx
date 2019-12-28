@@ -3,8 +3,8 @@ import Select from "react-select";
 import Joi from "joi-browser";
 import Input from "../common/input";
 import Password from "./password";
-import { postPassword } from "../services/userService";
-import { admin as lang_admin } from "../language/fr";
+import { postResource } from "../services/resourceService";
+import { admin as lang_admin, trslError } from "../language/fr";
 
 class User extends Component {
   state = {
@@ -15,14 +15,10 @@ class User extends Component {
     errors: {}
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   schema = {
     password: Joi.string()
       .required()
-      .min(8),
+      .min(6),
     password_email: Joi.boolean()
   };
 
@@ -31,7 +27,7 @@ class User extends Component {
     const { error } = Joi.validate(this.state.data, this.schema, options);
     if (!error) return null;
     const errors = {};
-    for (let item of error.details) errors[item.path[0]] = item;
+    for (let item of error.details) errors[item.path[0]] = trslError(item);
     return errors;
   };
 
@@ -53,7 +49,7 @@ class User extends Component {
     if (errors) return;
     const { data } = this.state;
     data["id"] = this.props.user.id;
-    const response = await postPassword(data);
+    const response = await postResource("password", data);
     console.log(response);
     this.setState({
       data: {

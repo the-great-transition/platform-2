@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.8.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
@@ -12,11 +13,18 @@
     "joi-browser": "^13.4.0",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
+    "material-table": "^1.54.2",
     "react": "^16.12.0",
+    "react-autosize-textarea": "^7.0.0",
+    "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "react-intl": "^3.9.2",
+    "react-numeric-input": "^2.2.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "react-select": "^3.0.8",
+    "react-to-print": "^2.5.0",
     "react-toastify": "^5.4.1"
   },
   "scripts": {

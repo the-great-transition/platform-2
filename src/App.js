@@ -8,6 +8,7 @@ import Login from "./components/login";
 import Nav from "./components/nav";
 import Dashboard from "./components/dashboard";
 import Submissions from "./components/submissions";
+import SubmissionViewer from "./components/submissionViewer";
 import Logout from "./components/logout";
 import Admin from "./components/admin";
 import Erratum from "./components/erratum";
@@ -30,7 +31,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App container">
+      <div className="App container-fluid">
         <main>
           {auth.getUser() ? (
             <React.Fragment>
@@ -38,11 +39,15 @@ class App extends Component {
               <ToastContainer autoClose={3000} position="top-center" />
               <Switch>
                 <ProtectedRoute path="/dashboard" component={Dashboard} />
+                <ProtectedRoute
+                  path="/submissions/:id"
+                  component={SubmissionViewer}
+                />
                 <ProtectedRoute path="/submissions" component={Submissions} />
                 <ProtectedRoute path="/admin" component={Admin} />
                 <ProtectedRoute path="/logout" component={Logout} />
                 <ProtectedRoute path="/erratum" component={Erratum} />
-                <ProtectedRoute path="/" exact component={Dashboard} />
+                <ProtectedRoute path="/" exact component={Submissions} />
                 <Redirect to="/erratum" />
               </Switch>
             </React.Fragment>
