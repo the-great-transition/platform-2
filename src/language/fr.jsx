@@ -209,11 +209,6 @@ export const panelists = {
       filtering: false
     },
     {
-      title: "Courriel",
-      field: "email",
-      filtering: false
-    },
-    {
       title: "Affiliation(s)",
       field: "affiliation",
       filtering: false
@@ -241,6 +236,25 @@ export const panelists = {
     { label: "Rejeté·e·s", value: "2" },
     { label: "Supprimé·e·s", value: "99" }
   ]
+};
+
+export const panelistCreate = {
+  createTitle: "Ajouter un·e panéliste",
+  submit: "Soumettre",
+  reset: "Rétablir",
+  cancel: "Annuler",
+  fname: part.fname,
+  lname: part.lname,
+  pronouns: "Pronom(s)",
+  email: part.email,
+  photo: part.fphotoname,
+  affiliation: part.affiliation,
+  bio: part.bio,
+  city: part.city,
+  country: part.country,
+  gender: part.gender,
+  minority: part.minority,
+  user: "Lié·e à quel·le membre?"
 };
 
 export const admin = {
@@ -282,6 +296,7 @@ export const errors_input = {
   "number.min": "L'entrée n'est pas assez longue, minimum de ",
   "number.negative": "L'entrée doit être négative",
   "number.positive": "L'entrée doit être positive",
+  "object.base": "Vous devez choisir un élément",
   "string.email": "L'entrée doit être une adresse courriel",
   "string.empty": "L'entrée ne peut pas être vide",
   "string.max": "L'entrée est trop longue, maximum de ",

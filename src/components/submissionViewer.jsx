@@ -3,7 +3,7 @@ import Submission from "./submission";
 import {
   getResource,
   postResource,
-  statusSubm
+  updateStatus
 } from "../services/resourceService";
 import { navPreviousNext } from "../utilities/array";
 
@@ -63,7 +63,7 @@ class SubmissionViewer extends Component {
       id: subm_id,
       status: subm_status
     };
-    await statusSubm(data);
+    await updateStatus("subm", data);
   }
 
   handleRating = ({ currentTarget: input }) => {

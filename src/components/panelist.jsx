@@ -56,7 +56,11 @@ class Panelist extends Component {
         </Helmet>
         <div className="row">
           <div className="col-8">
-            <h3>{fullname}</h3>
+            <h3>
+              {data.part_pronouns
+                ? fullname + " (" + data.part_pronouns + ")"
+                : fullname}
+            </h3>
             <h5>
               <i>{lang_panelists.status[data.part_status].label}</i>
             </h5>
@@ -102,36 +106,31 @@ class Panelist extends Component {
             <div className="row">
               <div className="col-6">
                 <TextDisplay
-                  name="description"
-                  label={lang_panelist.city}
-                  value={toHTML(data.part_city)}
-                />
-                <TextDisplay
-                  name="description"
+                  name="email"
                   label={lang_panelist.email}
                   value={toHTML(data.part_email)}
                 />
                 <TextDisplay
-                  name="description"
-                  label={lang_panelist.affiliation}
-                  value={toHTML(data.part_affiliation)}
+                  name="city"
+                  label={lang_panelist.city}
+                  value={toHTML(data.part_city)}
+                />
+                <TextDisplay
+                  name="minority"
+                  label={lang_panelist.minority}
+                  value={toHTML(data.part_minority)}
                 />
               </div>
               <div className="col-6">
                 <TextDisplay
-                  name="description"
-                  label={lang_panelist.country}
-                  value={toHTML(data.part_country)}
-                />
-                <TextDisplay
-                  name="description"
+                  name="gender"
                   label={lang_panelist.gender}
                   value={toHTML(data.part_gender)}
                 />
                 <TextDisplay
-                  name="description"
-                  label={lang_panelist.minority}
-                  value={toHTML(data.part_minority)}
+                  name="country"
+                  label={lang_panelist.country}
+                  value={toHTML(data.part_country)}
                 />
               </div>
             </div>
@@ -139,6 +138,11 @@ class Panelist extends Component {
               <div className="col">
                 <TextDisplay
                   name="description"
+                  label={lang_panelist.affiliation}
+                  value={toHTML(data.part_affiliation)}
+                />
+                <TextDisplay
+                  name="biography"
                   label={lang_panelist.bio}
                   value={toHTML(data.part_bio)}
                 />

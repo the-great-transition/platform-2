@@ -4,7 +4,7 @@ import Joi from "joi-browser";
 import SelectInput from "../common/selectInput";
 import Input from "../common/input";
 import TextArea from "./../common/textarea";
-import { postSubm } from "../services/resourceService";
+import { postResource } from "../services/resourceService";
 import {
   submissionCreate as lang_submissions,
   trslError
@@ -64,7 +64,7 @@ class SubmissionCreate extends Component {
     if (errors) return;
     const { data } = this.state;
     try {
-      await postSubm(data);
+      await postResource("subm", data);
       const { dataReset } = this.state;
       this.setState({ data: dataReset, errors: {} });
     } catch (ex) {

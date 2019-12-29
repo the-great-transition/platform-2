@@ -149,7 +149,7 @@ class Users extends Component {
               value={this.state.userSelected}
               onChange={this.handleSelected}
               isClearable="true"
-            ></Select>
+            />
           </div>
         </div>
         <div className="row">

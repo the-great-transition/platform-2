@@ -22,10 +22,9 @@ export async function postResource(type, data) {
   let URL = type === "password" ? apiURL + "user" : apiURL + type;
   if (data["id"]) {
     URL += "/" + data["id"];
-  } else {
-    return null;
   }
   URL += type === "password" ? "/password" : "";
+  data.type = data.type ? data.type : "";
   try {
     const response = await http.post(URL, data);
     toast.success(lang_http.post_success);
@@ -50,24 +49,8 @@ export async function deleteResource(type, id) {
   }
 }
 
-export async function postSubm(data) {
-  let URL = apiURL + "subm";
-  if (data["id"]) {
-    URL += "/" + data["id"];
-  }
-  try {
-    const response = await http.post(URL, data);
-    toast.success(lang_http.post_success);
-    return response["data"];
-  } catch (ex) {
-    console.log(ex);
-    toast.error(lang_http.post_fail);
-    return null;
-  }
-}
-
-export async function statusSubm(data) {
-  let URL = apiURL + "subm";
+export async function updateStatus(type, data) {
+  let URL = apiURL + type;
   if (data["id"]) {
     URL += "/" + data["id"];
   } else {
@@ -75,7 +58,7 @@ export async function statusSubm(data) {
     return null;
   }
   try {
-    data.type = "update";
+    data.type = "status";
     const response = await http.post(URL, data);
     toast.success(lang_http.post_success);
     return response["data"];
