@@ -10,7 +10,7 @@ export const nav = {
   profile: "Profil",
   dashboard: "Tableau de bord",
   submissions: "Soumissions",
-  participants: "Participant·e·s",
+  panelists: "Panélistes",
   schedule: "Horaire",
   translation: "Traduction",
   admin: "Administration",
@@ -22,7 +22,7 @@ export const submissions = {
   title: "Soumissions",
   displayed: "affichées",
   submitted: "Soumise le",
-  modify: "Modifier",
+  view: "Visionner",
   create: "Créer",
   description: "Description",
   columns: [
@@ -69,7 +69,8 @@ export const submissions = {
     { label: "Rejetées", value: "1" },
     { label: "Acceptées", value: "2" },
     { label: "Confirmées", value: "3" },
-    { label: "Annulées", value: "4" }
+    { label: "Annulées", value: "4" },
+    { label: "Supprimées", value: "99" }
   ]
 };
 
@@ -109,7 +110,8 @@ export const submission = {
     1: "Rejetée",
     2: "Acceptée",
     3: "Confirmée",
-    4: "Annulée"
+    4: "Annulée",
+    99: "Supprimée"
   },
   commsnum: "Nombre de communications",
   part: "Panéliste",
@@ -126,7 +128,9 @@ export const part = {
   country: "Pays",
   gender: "Genre",
   minority: "Cette personne est...",
-  bio: "Biography"
+  bio: "Biographie",
+  previous: "Précédent·e",
+  next: "Suivant·e"
 };
 
 export const comments = {
@@ -186,11 +190,57 @@ export const submissionCreate = {
     { name: "status", label: "Rejetée", value: 1 },
     { name: "status", label: "Acceptée", value: 2 },
     { name: "status", label: "Confirmée", value: 3 },
-    { name: "status", label: "Annulée", value: 4 }
+    { name: "status", label: "Annulée", value: 4 },
+    { name: "status", label: "Supprimée", value: 99 }
   ],
   submit: "Soumettre",
   reset: "Rétablir",
   cancel: "Annuler"
+};
+
+export const panelists = {
+  title: "Panélistes",
+  view: "Visionner",
+  create: "Ajouter",
+  columns: [
+    {
+      title: "Nom",
+      field: "fullname",
+      filtering: false
+    },
+    {
+      title: "Courriel",
+      field: "email",
+      filtering: false
+    },
+    {
+      title: "Affiliation(s)",
+      field: "affiliation",
+      filtering: false
+    },
+    {
+      title: "Ville",
+      field: "city"
+    },
+    {
+      title: "Pays",
+      field: "country"
+    },
+    {
+      title: "Genre",
+      field: "gender"
+    },
+    {
+      title: "Minorité",
+      field: "minority"
+    }
+  ],
+  status: [
+    { label: "En attente", value: "0" },
+    { label: "Confirmé·e·s", value: "1" },
+    { label: "Rejeté·e·s", value: "2" },
+    { label: "Supprimé·e·s", value: "99" }
+  ]
 };
 
 export const admin = {
@@ -223,6 +273,7 @@ export const admin = {
 
 export const errors_input = {
   "any.default": "L'entrée est erronée",
+  "any.empty": "L'entrée est vide",
   "any.required": "L'entrée est requise",
   "number.greater": "L'entrée doit être plus grande que ",
   "number.less": "L'entrée doit être plus petite que ",

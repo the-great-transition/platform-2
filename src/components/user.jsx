@@ -50,7 +50,6 @@ class User extends Component {
     const { data } = this.state;
     data["id"] = this.props.user.id;
     const response = await postResource("password", data);
-    console.log(response);
     this.setState({
       data: {
         password: "",

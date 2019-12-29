@@ -21,10 +21,6 @@ class Submission extends Component {
     }
   }
 
-  handleChange = e => {
-    return null;
-  };
-
   handleNav = e => {
     const { value } = e.currentTarget;
     const { location } = this.props;
@@ -92,23 +88,24 @@ class Submission extends Component {
               >
                 {lang_submission.previous}
               </button>
-              <button
-                className="btn btn-dark"
-                value="escape"
-                style={{ width: "5em", marginLeft: 5, marginRight: 5 }}
-                onClick={onNavEscape}
-              >
-                {lang_submission.escape}
-              </button>
+
               <button
                 className="btn btn-dark"
                 value="next"
                 disabled={navigationDisabled.next}
                 hidden={navigationHide}
-                style={{ width: "7em" }}
+                style={{ width: "7em", marginLeft: 5, marginRight: 5 }}
                 onClick={this.handleNav}
               >
                 {lang_submission.next}
+              </button>
+              <button
+                className="btn btn-dark"
+                value="escape"
+                style={{ width: "3em" }}
+                onClick={onNavEscape}
+              >
+                X
               </button>
             </div>
           </div>

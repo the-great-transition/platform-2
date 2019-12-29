@@ -7,14 +7,14 @@ import { getResource } from "../services/resourceService";
 import { toHTML, shorten } from "./../utilities/string";
 import {
   materialTable as lang_table,
-  submissions as lang_submissions
+  panelists as lang_panelists
 } from "../language/fr";
 import ButtonGroup from "../common/buttonGroup";
 
-class Submissions extends Component {
+class Panelists extends Component {
   state = {
-    submissions: {},
-    submissionsStatus: "0",
+    panelists: {},
+    panelistsStatus: "0",
     selectedRow: null
   };
 
@@ -28,71 +28,73 @@ class Submissions extends Component {
   }
 
   async populate() {
-    const submissions = await getResource("subm");
-    this.setState({ submissions });
+    const panelists = await getResource("part");
+    this.setState({ panelists });
   }
 
   handleSelect = e => {
-    const { value: submissionsStatus } = e.currentTarget;
-    this.setState({ submissionsStatus });
+    const { value: panelistsStatus } = e.currentTarget;
+    this.setState({ panelistsStatus });
   };
 
   render() {
-    const { submissions } = this.state;
+    const { panelists } = this.state;
     let unfiltered = [];
-    if (submissions && submissions.length >= 0) {
-      unfiltered = submissions.map((d, i) => {
+    if (panelists && panelists.length >= 0) {
+      unfiltered = panelists.map((d, i) => {
         const r = {
-          id: d.subm_id,
-          average: d.average,
-          rated: d.rated,
-          slug: d.subm_slug,
-          submittedby: toHTML(d.user_name),
-          title: "#" + d.subm_id + " " + toHTML(d.subm_title),
-          description: toHTML(d.subm_description),
-          language: d.subm_language,
-          level: d.subm_level,
-          theme: d.subm_theme,
-          orientation: d.subm_orientation,
-          type: d.subm_type,
-          status: d.subm_status,
-          parts: d.parts,
-          comms: d.comms
+          id: d.part_id,
+          slug: d.part_slug,
+          fname: toHTML(d.part_fname),
+          lname: toHTML(d.part_lname),
+          fullname: d.part_fname + " " + d.part_lname,
+          pronouns: toHTML(d.part_pronouns),
+          email: toHTML(d.part_email),
+          photo: d.part_photo,
+          affiliation: toHTML(d.part_affiliation),
+          bio: toHTML(d.part_bio),
+          city: toHTML(d.part_city),
+          country: toHTML(d.part_country),
+          gender: toHTML(d.part_gender),
+          minority: toHTML(d.part_minority),
+          status: d.part_status,
+          user: d.user_id,
+          subm: d.subm_id
         };
         return r;
       });
     }
     let data = unfiltered.filter(d => {
-      return d.status === this.state.submissionsStatus;
+      return d.status === this.state.panelistsStatus;
     });
     return (
       <div>
         <Helmet>
-          <title>{lang_submissions.title}</title>
+          <title>{lang_panelists.title}</title>
         </Helmet>
         <MaterialTable
           tableRef={this.tableRef}
-          title={lang_submissions.title}
+          title={lang_panelists.title}
           localization={lang_table}
-          columns={lang_submissions.columns}
+          columns={lang_panelists.columns}
           data={data}
           detailPanel={rowData => {
             return (
               <div style={{ padding: 20 }}>
-                <h5>{rowData.title}</h5>
-                {shorten(rowData.description, 1000)}
+                <h5>{rowData.fullname}</h5>
+                {shorten(rowData.bio, 1000)}
               </div>
             );
           }}
           actions={[
             {
               icon: "listalt",
-              tooltip: lang_submissions.view,
+              tooltip: lang_panelists.view,
               onClick: (event, rowData) => {
                 this.props.history.push({
                   tableArray: this.tableRef.current.state.data,
                   tableIndex: rowData.id,
-                  pathname: "/submissions/" + rowData.id + "-" + rowData.slug
+                  pathname: "/panelists/" + rowData.id + "-" + rowData.slug
                 });
               }
             }
@@ -111,17 +113,17 @@ class Submissions extends Component {
                   title={
                     <React.Fragment>
                       <ButtonGroup
-                        name="submissionsStatus"
-                        array={lang_submissions.status}
-                        selected={this.state.submissionsStatus}
+                        name="submissionsType"
+                        array={lang_panelists.status}
+                        selected={this.state.panelistsStatus}
                         onSelect={this.handleSelect}
                       />
-                      <Link to="/submissions/new">
+                      <Link to="/panelists/new">
                         <button
                           className="btn btn-success"
                           style={{ marginLeft: 10 }}
                         >
-                          {lang_submissions.create}
+                          {lang_panelists.create}
                         </button>
                       </Link>
                     </React.Fragment>
@@ -136,4 +138,4 @@ class Submissions extends Component {
   }
 }
 
-export default Submissions;
+export default Panelists;

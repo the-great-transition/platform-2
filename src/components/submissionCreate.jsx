@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import Joi from "joi-browser";
 import SelectInput from "../common/selectInput";
 import Input from "../common/input";
 import TextArea from "./../common/textarea";
-import { submissionCreate as lang_submissions } from "./../language/fr";
+import { postSubm } from "../services/resourceService";
+import {
+  submissionCreate as lang_submissions,
+  trslError
+} from "./../language/fr";
 
 class SubmissionCreate extends Component {
   state = {
@@ -15,7 +20,8 @@ class SubmissionCreate extends Component {
       orientation: { label: "Aucune", value: 0 },
       theme: { label: "Aucun", value: 0 },
       level: { label: "Non défini", value: 0 },
-      status: { label: "Soumises", value: 0 }
+      status: { label: "Soumises", value: 0 },
+      info: ""
     },
     dataReset: {
       type: { label: "Communication", value: 0 },
@@ -25,9 +31,45 @@ class SubmissionCreate extends Component {
       orientation: { label: "Aucune", value: 0 },
       theme: { label: "Aucun", value: 0 },
       level: { label: "Non défini", value: 0 },
-      status: { label: "Soumises", value: 0 }
+      status: { label: "Soumises", value: 0 },
+      info: ""
     },
     errors: {}
+  };
+
+  schema = {
+    type: Joi.object(),
+    title: Joi.string().required(),
+    description: Joi.string().required(),
+    language: Joi.object(),
+    orientation: Joi.object(),
+    theme: Joi.object(),
+    level: Joi.object(),
+    status: Joi.object(),
+    info: Joi.string().allow("")
+  };
+
+  validate = () => {
+    const options = { abortEarly: false };
+    const { error } = Joi.validate(this.state.data, this.schema, options);
+    if (!error) return null;
+    const errors = {};
+    for (let item of error.details) errors[item.path[0]] = trslError(item);
+    return errors;
+  };
+
+  handleSubmit = async () => {
+    const errors = this.validate();
+    this.setState({ errors: errors || {} });
+    if (errors) return;
+    const { data } = this.state;
+    try {
+      await postSubm(data);
+      const { dataReset } = this.state;
+      this.setState({ data: dataReset, errors: {} });
+    } catch (ex) {
+      console.log(ex);
+    }
   };
 
   handleChange = e => {
@@ -45,14 +87,14 @@ class SubmissionCreate extends Component {
     this.setState({ data });
   };
 
-  handleSubmit = e => {};
-
   handleReset = e => {
     const { dataReset } = this.state;
     this.setState({ data: dataReset });
   };
 
-  handleCancel = e => {};
+  handleCancel = e => {
+    this.props.history.goBack();
+  };
 
   render() {
     const { data, errors } = this.state;
@@ -76,7 +118,7 @@ class SubmissionCreate extends Component {
               name="title"
               value={data.title}
               label={lang_submissions.title}
-              error={errors.name}
+              error={errors.title}
               onChange={this.handleChange}
             />
             <TextArea
@@ -138,7 +180,6 @@ class SubmissionCreate extends Component {
               rows="2"
               value={data.info}
               label={lang_submissions.infoLabel}
-              error={errors.info}
               onChange={this.handleChange}
             />
           </div>

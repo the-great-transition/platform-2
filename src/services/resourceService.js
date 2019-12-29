@@ -75,8 +75,8 @@ export async function statusSubm(data) {
     return null;
   }
   try {
-    const type = "update";
-    const response = await http.post(URL, data, type);
+    data.type = "update";
+    const response = await http.post(URL, data);
     toast.success(lang_http.post_success);
     return response["data"];
   } catch (ex) {
