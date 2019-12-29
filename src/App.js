@@ -9,6 +9,7 @@ import Nav from "./components/nav";
 import Dashboard from "./components/dashboard";
 import Submissions from "./components/submissions";
 import SubmissionViewer from "./components/submissionViewer";
+import SubmissionCreate from "./components/submissionCreate";
 import Logout from "./components/logout";
 import Admin from "./components/admin";
 import Erratum from "./components/erratum";
@@ -42,6 +43,11 @@ class App extends Component {
                   user={this.state.user}
                   path="/dashboard"
                   component={Dashboard}
+                />
+                <ProtectedRoute
+                  user={this.state.user}
+                  path="/submissions/new"
+                  component={SubmissionCreate}
                 />
                 <ProtectedRoute
                   user={this.state.user}

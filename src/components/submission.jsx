@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-import PanelSubmission from "./panelSubmission";
-import Comments from "./comments";
 import Helmet from "react-helmet";
+import Comments from "./comments";
+import Participant from "./participant";
+import PanelSubmission from "./panelSubmission";
 import TextDisplay from "../common/textDisplay";
 import ButtonGroup from "../common/buttonGroup";
+import SelectInput from "../common/selectInput";
 import { toHTML } from "../utilities/string";
-import { submission as lang_submission } from "../language/fr";
-import Participant from "./participant";
+import {
+  submission as lang_submission,
+  submissionCreate as lang_submissionCreate
+} from "../language/fr";
 
 class Submission extends Component {
   componentDidMount() {
@@ -43,8 +47,15 @@ class Submission extends Component {
   };
 
   render() {
-    const { data, ratings } = this.props;
-    const { navigationDisabled } = this.props;
+    const {
+      data,
+      ratings,
+      navigationDisabled,
+      user,
+      onNavEscape,
+      onRating,
+      onStatus
+    } = this.props;
     const navigationHide =
       navigationDisabled.previous && navigationDisabled.next ? true : false;
     return (
@@ -85,7 +96,7 @@ class Submission extends Component {
                 className="btn btn-dark"
                 value="escape"
                 style={{ width: "5em", marginLeft: 5, marginRight: 5 }}
-                onClick={this.props.onNavEscape}
+                onClick={onNavEscape}
               >
                 {lang_submission.escape}
               </button>
@@ -119,7 +130,7 @@ class Submission extends Component {
                 { label: 5, value: "5" }
               ]}
               selected={ratings.myRating}
-              onSelect={this.props.onRating}
+              onSelect={onRating}
             />
             {lang_submission.averageRating}
             <b>{ratings.average}</b>
@@ -128,6 +139,13 @@ class Submission extends Component {
         <div className="row">
           <div className="col-7">
             <h4>{toHTML(data.subm_title)}</h4>
+            <SelectInput
+              name="status"
+              label={lang_submissionCreate.statusLabel}
+              value={lang_submissionCreate.status[data.subm_status]}
+              options={lang_submissionCreate.status}
+              onChange={onStatus}
+            />
             <div className="row">
               <div className="col-6">
                 <TextDisplay
@@ -182,7 +200,7 @@ class Submission extends Component {
             )}
           </div>
           <div className="col-5">
-            <Comments user={this.props.user} subm_id={data.subm_id} />
+            <Comments user={user} subm_id={data.subm_id} />
           </div>
         </div>
         {data.subm_type !== "1" ? (
@@ -191,11 +209,11 @@ class Submission extends Component {
               {" "}
               {data.parts.map((p, k) => {
                 return (
-                  <div>
+                  <div key={k}>
                     <h4>
                       {lang_submission.part} #{k + 1}
                     </h4>
-                    <Participant key={k} data={p} />
+                    <Participant data={p} />
                   </div>
                 );
               })}

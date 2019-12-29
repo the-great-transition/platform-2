@@ -23,6 +23,7 @@ export const submissions = {
   displayed: "affichées",
   submitted: "Soumise le",
   modify: "Modifier",
+  create: "Créer",
   description: "Description",
   columns: [
     {
@@ -63,7 +64,7 @@ export const submissions = {
       lookup: { 0: "Aucune", 1: "Stratégie", 2: "Modèles" }
     }
   ],
-  type: [
+  status: [
     { label: "Soumises", value: "0" },
     { label: "Rejetées", value: "1" },
     { label: "Acceptées", value: "2" },
@@ -134,6 +135,62 @@ export const comments = {
   submit: "Soumettre",
   delete: "Supprimer",
   none: "Aucun commentaire pour l'instant."
+};
+
+export const submissionCreate = {
+  createTitle: "Créer une nouvelle soumission",
+  title: "Titre",
+  description: "Description",
+  typeLabel: "Type",
+  languageLabel: "Language",
+  levelLabel: "Niveau",
+  themeLabel: "Thème",
+  orientationLabel: "Orientation",
+  statusLabel: "Statut",
+  infoLabel: "Informations supplémentaires",
+  type: [
+    { name: "type", label: "Communication", value: 0 },
+    { name: "type", label: "Panel", value: 1 },
+    { name: "type", label: "Atelier", value: 2 }
+  ],
+  language: [
+    { name: "language", label: "Français", value: 0 },
+    { name: "language", label: "Anglais", value: 1 },
+    { name: "language", label: "Bilingue", value: 2 }
+  ],
+  level: [
+    { name: "level", label: "Non défini", value: 0 },
+    { name: "level", label: "Introductif", value: 1 },
+    { name: "level", label: "Avancé", value: 2 }
+  ],
+  theme: [
+    { name: "theme", label: "Aucun", value: 0 },
+    { name: "theme", label: "Une économie pour tout le monde", value: 1 },
+    { name: "theme", label: "Transformer notre rapport à la nature", value: 2 },
+    {
+      name: "theme",
+      label: "L'anti-impérialisme dans un monde turbulent",
+      value: 3
+    },
+    { name: "theme", label: "Repenser la démocratie et le pouvoir", value: 4 },
+    { name: "theme", label: "Décoloniser les savoirs", value: 5 },
+    { name: "theme", label: "Lutter contre les oppressions", value: 6 }
+  ],
+  orientation: [
+    { name: "orientation", label: "Aucune", value: 0 },
+    { name: "orientation", label: "Stratégie", value: 1 },
+    { name: "orientation", label: "Modèles", value: 2 }
+  ],
+  status: [
+    { name: "status", label: "Soumise", value: 0 },
+    { name: "status", label: "Rejetée", value: 1 },
+    { name: "status", label: "Acceptée", value: 2 },
+    { name: "status", label: "Confirmée", value: 3 },
+    { name: "status", label: "Annulée", value: 4 }
+  ],
+  submit: "Soumettre",
+  reset: "Rétablir",
+  cancel: "Annuler"
 };
 
 export const admin = {

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import MaterialTable from "material-table";
 import { MTableToolbar } from "material-table";
@@ -32,7 +33,6 @@ class Submissions extends Component {
   }
 
   handleSelect = e => {
-    console.log("yes");
     const { value: submissionsType } = e.currentTarget;
     this.setState({ submissionsType });
   };
@@ -109,12 +109,22 @@ class Submissions extends Component {
                 <MTableToolbar
                   {...props}
                   title={
-                    <ButtonGroup
-                      name="submissionsType"
-                      array={lang_submissions.type}
-                      selected={this.state.submissionsType}
-                      onSelect={this.handleSelect}
-                    />
+                    <React.Fragment>
+                      <ButtonGroup
+                        name="submissionsType"
+                        array={lang_submissions.status}
+                        selected={this.state.submissionsType}
+                        onSelect={this.handleSelect}
+                      />
+                      <Link to="/submissions/new">
+                        <button
+                          className="btn btn-success"
+                          style={{ marginLeft: 10 }}
+                        >
+                          {lang_submissions.create}
+                        </button>
+                      </Link>
+                    </React.Fragment>
                   }
                 />
               </div>

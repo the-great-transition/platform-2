@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Comments from "./comments";
-import Helmet from "react-helmet";
 import TextDisplay from "../common/textDisplay";
-import ButtonGroup from "../common/buttonGroup";
 import { toHTML } from "../utilities/string";
 import { submission as lang_submission } from "../language/fr";
 import Participant from "./participant";

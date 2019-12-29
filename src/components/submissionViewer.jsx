@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Submission from "./submission";
-import { getResource, postResource } from "../services/resourceService";
+import {
+  getResource,
+  postResource,
+  statusSubm
+} from "../services/resourceService";
 import { navPreviousNext } from "../utilities/array";
 
 class SubmissionViewer extends Component {
@@ -53,8 +57,16 @@ class SubmissionViewer extends Component {
     this.treatRatings();
   }
 
+  async updateStatus() {
+    const { subm_id, subm_status } = this.state.submission;
+    const data = {
+      id: subm_id,
+      status: subm_status
+    };
+    await statusSubm(data);
+  }
+
   handleRating = ({ currentTarget: input }) => {
-    console.log("called");
     const { value } = input;
     const oldvalue = this.state.ratings.myRating;
     const { ratings } = this.state;
@@ -66,6 +78,14 @@ class SubmissionViewer extends Component {
         ratings["myRating"] = oldvalue;
         this.setState({ ratings });
       }
+    });
+  };
+
+  handleStatusChange = ({ value: status }) => {
+    const { submission } = this.state;
+    submission.subm_status = status;
+    this.setState({ submission }, () => {
+      this.updateStatus();
     });
   };
 
@@ -103,6 +123,7 @@ class SubmissionViewer extends Component {
           postRating={this.postRating}
           onRating={this.handleRating}
           ratings={this.state.ratings}
+          onStatus={this.handleStatusChange}
         />
       </div>
     ) : (

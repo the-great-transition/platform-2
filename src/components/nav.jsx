@@ -28,9 +28,13 @@ class Nav extends Component {
             </Link>
           </ul>
           <ul className="navbar-nav ml-auto">
-            <Link className="nav-link" to="/admin">
-              {lang_nav.admin}
-            </Link>
+            {parseInt(this.props.user.role) === 0 ? (
+              <Link className="nav-link" to="/admin">
+                {lang_nav.admin}
+              </Link>
+            ) : (
+              ""
+            )}
             <Link className="nav-link" to="/logout">
               {lang_nav.logout}
             </Link>

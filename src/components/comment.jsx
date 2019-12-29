@@ -12,7 +12,7 @@ class Comment extends Component {
               {data.comm_time} | {data.user_name}
             </td>
             <td align="right" style={{ borderLeft: 0 }}>
-              {data.user_id == this.props.user["id"] ||
+              {data.user_id === this.props.user["id"] ||
               this.props.user["role"] < 1 ? (
                 <input
                   type="button"

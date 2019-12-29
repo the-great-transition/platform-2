@@ -66,6 +66,26 @@ export async function postSubm(data) {
   }
 }
 
+export async function statusSubm(data) {
+  let URL = apiURL + "subm";
+  if (data["id"]) {
+    URL += "/" + data["id"];
+  } else {
+    toast.error(lang_http.post_fail);
+    return null;
+  }
+  try {
+    const type = "update";
+    const response = await http.post(URL, data, type);
+    toast.success(lang_http.post_success);
+    return response["data"];
+  } catch (ex) {
+    console.log(ex);
+    toast.error(lang_http.post_fail);
+    return null;
+  }
+}
+
 export function getJWT() {
   return localStorage.getItem(tokenKey);
 }
