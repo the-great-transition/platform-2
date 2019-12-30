@@ -263,6 +263,8 @@ export const associate = {
   menu_panelists: "Panélistes -> Soumissions",
   comms_title: "Associer des communications",
   panelists_title: "Associer des panélistes",
+  comms_header: "Associer des communications à des panels",
+  panelists_header: "Associer des panélistes à des soumissions",
   comms: "Communications actuelles",
   average: "Évaluation moyenne",
   associate: "Associer",

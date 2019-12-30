@@ -107,7 +107,7 @@ class AssociateComm extends Component {
       });
       const commData_unsorted = commData_filtered.map(s => {
         const subm = {
-          label: toHTML(s.subm_title),
+          label: toHTML(s.subm_title) + " | " + s.user_name,
           value: s.subm_id,
           data: s
         };
@@ -120,6 +120,7 @@ class AssociateComm extends Component {
         <Helmet>
           <title>{lang_associate.comms_title}</title>
         </Helmet>
+        <h2>{lang_associate.comms_header}</h2>
         <div className="row">
           <div className="col">
             <Select
@@ -136,7 +137,7 @@ class AssociateComm extends Component {
                       {toHTML(selectedPanel.data.subm_title)}
                     </h4>
                     <h5>
-                      <i>{toHTML(selectedPanel.data.subm_user)}</i>
+                      <i>{toHTML(selectedPanel.data.user_name)}</i>
                     </h5>
                     {lang_associate.average +
                       " : " +
@@ -147,9 +148,9 @@ class AssociateComm extends Component {
                   <div className="col">
                     {selectedPanel ? (
                       <React.Fragment>
-                        <h4 style={{ marginTop: 20 }}>
+                        <h5 style={{ marginTop: 20 }}>
                           {lang_associate.addComm}
-                        </h4>
+                        </h5>
                         <Select
                           options={commData}
                           value={selectedComm}
@@ -171,7 +172,7 @@ class AssociateComm extends Component {
                       ""
                     )}
                     {submComms ? (
-                      <h4 style={{ marginTop: 20 }}>{lang_associate.comms}</h4>
+                      <h5 style={{ marginTop: 20 }}>{lang_associate.comms}</h5>
                     ) : (
                       ""
                     )}
