@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import AdminMenu from "./admin-menu";
+import AdminMenu from "./adminMenu";
 import Config from "./config";
 import Users from "./users";
 

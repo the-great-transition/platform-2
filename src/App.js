@@ -13,8 +13,9 @@ import SubmissionCreate from "./components/submissionCreate";
 import Panelists from "./components/panelists";
 import PanelistViewer from "./components/panelistViewer.jsx";
 import PanelistCreate from "./components/panelistCreate";
-import Logout from "./components/logout";
+import Associate from "./components/associate";
 import Admin from "./components/admin";
+import Logout from "./components/logout";
 import Erratum from "./components/erratum";
 import auth from "./services/authService";
 
@@ -76,6 +77,11 @@ class App extends Component {
                   user={this.state.user}
                   path="/panelists"
                   component={Panelists}
+                />
+                <ProtectedRoute
+                  user={this.state.user}
+                  path="/associate"
+                  component={Associate}
                 />
                 <ProtectedRoute
                   user={this.state.user}

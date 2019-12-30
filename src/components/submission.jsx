@@ -203,7 +203,6 @@ class Submission extends Component {
         {data.subm_type !== "1" ? (
           <div className="row">
             <div className="col-7">
-              {" "}
               {data.parts.map((p, k) => {
                 return (
                   <div key={k}>

@@ -11,6 +11,7 @@ export const nav = {
   dashboard: "Tableau de bord",
   submissions: "Soumissions",
   panelists: "Panélistes",
+  associate: "Associer",
   schedule: "Horaire",
   translation: "Traduction",
   admin: "Administration",
@@ -255,6 +256,19 @@ export const panelistCreate = {
   gender: part.gender,
   minority: part.minority,
   user: "Lié·e à quel·le membre?"
+};
+
+export const associate = {
+  menu_comms: "Communications -> Panels",
+  menu_panelists: "Panélistes -> Soumissions",
+  comms_title: "Associer des communications",
+  panelists_title: "Associer des panélistes",
+  comms: "Communications actuelles",
+  average: "Évaluation moyenne",
+  associate: "Associer",
+  dissociate: "Dissocier",
+  addComm: "Ajouter une communication",
+  confirmAssociate: "Confirmer l'ajout"
 };
 
 export const admin = {

@@ -49,7 +49,7 @@ class User extends Component {
     if (errors) return;
     const { data } = this.state;
     data["id"] = this.props.user.id;
-    const response = await postResource("password", data);
+    await postResource("password", data);
     this.setState({
       data: {
         password: "",

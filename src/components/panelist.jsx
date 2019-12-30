@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
-import Comments from "./comments";
 import TextDisplay from "../common/textDisplay";
 import { toHTML } from "../utilities/string";
 import {
   part as lang_panelist,
-  panelists as lang_panelists,
-  panelistCreate as lang_panelistCreate
+  panelists as lang_panelists
 } from "../language/fr";
 
 class Panelist extends Component {
@@ -39,13 +37,7 @@ class Panelist extends Component {
   };
 
   render() {
-    const {
-      data,
-      navigationDisabled,
-      user,
-      onNavEscape,
-      onStatus
-    } = this.props;
+    const { data, navigationDisabled, onNavEscape } = this.props;
     const fullname = data.part_fname + " " + data.part_lname;
     const navigationHide =
       navigationDisabled.previous && navigationDisabled.next ? true : false;

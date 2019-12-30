@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Panelist from "./panelist";
-import { getResource, postResource } from "../services/resourceService";
+import { getResource } from "../services/resourceService";
 import { navPreviousNext } from "../utilities/array";
 
 class PanelistViewer extends Component {

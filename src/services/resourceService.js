@@ -8,7 +8,7 @@ const tokenKey = "token";
 http.setJWT(getJWT());
 
 export async function getResource(type, id) {
-  const URL = id ? apiURL + type + "/" + id : apiURL + type;
+  let URL = id ? apiURL + type + "/" + id : apiURL + type;
   try {
     const response = await http.get(URL);
     return response["data"];
@@ -20,9 +20,8 @@ export async function getResource(type, id) {
 
 export async function postResource(type, data) {
   let URL = type === "password" ? apiURL + "user" : apiURL + type;
-  if (data["id"]) {
+  if (data["id"] || (type === "associate" && data["id"] === 0))
     URL += "/" + data["id"];
-  }
   URL += type === "password" ? "/password" : "";
   data.type = data.type ? data.type : "";
   try {

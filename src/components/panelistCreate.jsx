@@ -252,7 +252,6 @@ class PanelistCreate extends Component {
                 options={options}
                 value={data.user}
                 onChange={this.handleSelected}
-                isClearable="true"
               />
             </div>
           </div>
