@@ -46,6 +46,9 @@ export async function postResource(type, data) {
       className: css({
         color: "#FFFFFF",
         background: "#550C18 !important"
+      }),
+      progressClassName: css({
+        background: "#FFFFFF"
       })
     });
     return null;
@@ -60,6 +63,9 @@ export async function deleteResource(type, id) {
       className: css({
         color: "#FFFFFF",
         background: "#A54224 !important"
+      }),
+      progressClassName: css({
+        background: "#FFFFFF"
       })
     });
     return response["data"];
@@ -69,6 +75,9 @@ export async function deleteResource(type, id) {
       className: css({
         color: "#FFFFFF",
         background: "#550C18 !important"
+      }),
+      progressClassName: css({
+        background: "#FFFFFF"
       })
     });
     return null;
@@ -84,6 +93,9 @@ export async function updateStatus(type, data) {
       className: css({
         color: "#FFFFFF",
         background: "#550C18 !important"
+      }),
+      progressClassName: css({
+        background: "#FFFFFF"
       })
     });
     return null;
@@ -95,6 +107,9 @@ export async function updateStatus(type, data) {
       className: css({
         color: "#FFFFFF",
         background: "#A54224 !important"
+      }),
+      progressClassName: css({
+        background: "#FFFFFF"
       })
     });
     return response["data"];
@@ -104,6 +119,9 @@ export async function updateStatus(type, data) {
       className: css({
         color: "#FFFFFF",
         background: "#550C18 !important"
+      }),
+      progressClassName: css({
+        background: "#FFFFFF"
       })
     });
     return null;
