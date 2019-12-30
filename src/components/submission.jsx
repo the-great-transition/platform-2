@@ -219,11 +219,11 @@ class Submission extends Component {
         ) : (
           data.comms.map((c, k) => {
             return (
-              <div>
+              <div key={k}>
                 <h4>
                   {lang_submission.comm} #{k + 1}
                 </h4>
-                <PanelSubmission key={k} data={c} />
+                <PanelSubmission data={c} />
               </div>
             );
           })

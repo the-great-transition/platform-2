@@ -43,6 +43,7 @@ class Submissions extends Component {
     if (submissions && submissions.length >= 0) {
       unfiltered = submissions.map((d, i) => {
         const r = {
+          key: i,
           id: d.subm_id,
           average: d.average,
           rated: d.rated,

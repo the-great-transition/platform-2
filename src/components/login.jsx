@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Input from "../common/input";
 import { login } from "../services/authService";
 import { login as lang_login } from "../language/fr";
+import header from "../media/site-header-v1-fr.jpg";
 
 class Login extends Component {
   state = {
@@ -27,24 +28,38 @@ class Login extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <form onSubmit={this.submit}>
-        <h2>Connexion</h2>
-        <Input
-          type="text"
-          name="email"
-          value={email}
-          label={lang_login.email}
-          onChange={this.handleChange}
-        />
-        <Input
-          type="password"
-          name="password"
-          value={password}
-          label={lang_login.password}
-          onChange={this.handleChange}
-        />
-        <button className="btn btn-submit btn-primary">Soumettre</button>
-      </form>
+      <div className="container">
+        <div className="row">
+          <div className="col-2"></div>
+          <div className="col-8">
+            <img
+              src={header}
+              width="578"
+              style={{ display: "block", margin: "auto" }}
+            />
+            <h2>{lang_login.login}</h2>
+            <form onSubmit={this.submit}>
+              <Input
+                type="text"
+                name="email"
+                value={email}
+                label={lang_login.email}
+                onChange={this.handleChange}
+              />
+              <Input
+                type="password"
+                name="password"
+                value={password}
+                label={lang_login.password}
+                onChange={this.handleChange}
+              />
+              <button className="btn btn-submit btn-primary">
+                {lang_login.submit}
+              </button>
+            </form>
+          </div>
+        </div>{" "}
+      </div>
     );
   }
 }

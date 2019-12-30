@@ -1,5 +1,6 @@
 import http from "./httpService";
 import { toast } from "react-toastify";
+import { css } from "glamor";
 import { http as lang_http } from "../language/fr";
 
 const apiURL = process.env.REACT_APP_API_URL;
@@ -20,17 +21,33 @@ export async function getResource(type, id) {
 
 export async function postResource(type, data) {
   let URL = type === "password" ? apiURL + "user" : apiURL + type;
-  if (data["id"] || (type === "associate" && data["id"] === 0))
+  if (
+    data["id"] ||
+    (type === "associate" && (data["type"] === "part" || data["id"] === 0))
+  )
     URL += "/" + data["id"];
   URL += type === "password" ? "/password" : "";
   data.type = data.type ? data.type : "";
   try {
     const response = await http.post(URL, data);
-    toast.success(lang_http.post_success);
+    toast(lang_http.post_success, {
+      className: css({
+        color: "#FFFFFF",
+        background: "#A54224 !important"
+      }),
+      progressClassName: css({
+        background: "#FFFFFF"
+      })
+    });
     return response["data"];
   } catch (ex) {
     console.log(ex);
-    toast.error(lang_http.post_fail);
+    toast(lang_http.post_fail, {
+      className: css({
+        color: "#FFFFFF",
+        background: "#550C18 !important"
+      })
+    });
     return null;
   }
 }
@@ -39,11 +56,21 @@ export async function deleteResource(type, id) {
   const URL = id ? apiURL + type + "/" + id : apiURL + type;
   try {
     const response = await http.delete(URL);
-    toast.success(lang_http.delete_success);
+    toast(lang_http.delete_success, {
+      className: css({
+        color: "#FFFFFF",
+        background: "#A54224 !important"
+      })
+    });
     return response["data"];
   } catch (ex) {
     console.log(ex);
-    toast.error(lang_http.delete_fail);
+    toast(lang_http.delete_fail, {
+      className: css({
+        color: "#FFFFFF",
+        background: "#550C18 !important"
+      })
+    });
     return null;
   }
 }
@@ -53,17 +80,32 @@ export async function updateStatus(type, data) {
   if (data["id"]) {
     URL += "/" + data["id"];
   } else {
-    toast.error(lang_http.post_fail);
+    toast(lang_http.post_fail, {
+      className: css({
+        color: "#FFFFFF",
+        background: "#550C18 !important"
+      })
+    });
     return null;
   }
   try {
     data.type = "status";
     const response = await http.post(URL, data);
-    toast.success(lang_http.post_success);
+    toast(lang_http.post_success, {
+      className: css({
+        color: "#FFFFFF",
+        background: "#A54224 !important"
+      })
+    });
     return response["data"];
   } catch (ex) {
     console.log(ex);
-    toast.error(lang_http.post_fail);
+    toast(lang_http.post_fail, {
+      className: css({
+        color: "#FFFFFF",
+        background: "#550C18 !important"
+      })
+    });
     return null;
   }
 }

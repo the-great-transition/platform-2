@@ -1,4 +1,5 @@
 export const login = {
+  login: "Connexion",
   email: "Courriel :",
   password: "Mot de passe :",
   remember: "Se souvenir de moi :",
@@ -266,10 +267,12 @@ export const associate = {
   comms_header: "Associer des communications à des panels",
   panelists_header: "Associer des panélistes à des soumissions",
   comms: "Communications actuelles",
+  parts: "Panélistes",
   average: "Évaluation moyenne",
   associate: "Associer",
   dissociate: "Dissocier",
   addComm: "Ajouter une communication",
+  addPart: "Ajouter un·e panéliste",
   confirmAssociate: "Confirmer l'ajout"
 };
 

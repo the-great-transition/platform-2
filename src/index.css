@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -19,4 +17,18 @@ hr {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.toastify-success {
+  color: "#FFFFFF";
+  background: "#A54224 !important";
+}
+
+.toastify-fail {
+  color: "#FFFFFF";
+  background: "#550C18 !important";
+}
+
+.toastify-progress {
+  background: "#FFFFFF";
 }

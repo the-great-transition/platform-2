@@ -78,11 +78,11 @@ class PanelSubmission extends Component {
           <div className="col-7">
             {data.parts.map((p, k) => {
               return (
-                <div>
+                <div key={k}>
                   <h4>
                     {lang_submission.part} #{k + 1}
                   </h4>
-                  <Participant key={k} data={p} />
+                  <Participant data={p} />
                 </div>
               );
             })}

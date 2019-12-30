@@ -15,11 +15,6 @@ class AssociateComm extends Component {
     selectedComm: null
   };
 
-  constructor(props) {
-    super(props);
-    this.tableRef = React.createRef();
-  }
-
   componentDidMount() {
     this.populate();
   }
@@ -95,25 +90,28 @@ class AssociateComm extends Component {
       });
       const panelData_unsorted = panelData_filtered.map(s => {
         const subm = {
-          label: toHTML(s.subm_title),
+          label: "#" + s.subm_id + " " + toHTML(s.subm_title),
+          title: toHTML(s.subm_title),
           value: s.subm_id,
           data: s
         };
         return subm;
       });
-      panelData = _.orderBy(panelData_unsorted, "label", "asc");
+      panelData = _.orderBy(panelData_unsorted, "title", "asc");
       const commData_filtered = submissions.filter(s => {
         return s.subm_type === "0";
       });
       const commData_unsorted = commData_filtered.map(s => {
         const subm = {
-          label: toHTML(s.subm_title) + " | " + s.user_name,
+          label:
+            "#" + s.subm_id + " " + toHTML(s.subm_title) + " | " + s.user_name,
+          title: toHTML(s.subm_title),
           value: s.subm_id,
           data: s
         };
         return subm;
       });
-      commData = _.orderBy(commData_unsorted, "label", "asc");
+      commData = _.orderBy(commData_unsorted, "title", "asc");
     }
     return (
       <div>
@@ -196,10 +194,20 @@ class AssociateComm extends Component {
                                 </tr>
                                 <tr>
                                   {c.parts.map((p, key) => {
+                                    let parity = p.part_gender
+                                      ? p.part_gender
+                                      : "";
+                                    parity = p.part_minority
+                                      ? parity + ", " + p.part_minority
+                                      : parity;
                                     return (
                                       <td key={key}>
                                         {toHTML(
-                                          p.part_fname + " " + p.part_lname
+                                          p.part_fname +
+                                            " " +
+                                            p.part_lname +
+                                            " | " +
+                                            parity
                                         )}
                                       </td>
                                     );
