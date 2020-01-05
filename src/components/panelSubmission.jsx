@@ -70,9 +70,7 @@ class PanelSubmission extends Component {
               ""
             )}
           </div>
-          <div className="col-5">
-            <Comments user={this.props.user} subm_id={data.subm_id} />
-          </div>
+          <div className="col-5"></div>
         </div>
         <div className="row">
           <div className="col-7">
