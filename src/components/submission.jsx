@@ -15,6 +15,7 @@ import {
 class Submission extends Component {
   componentDidMount() {
     this.props.getRatings(this.props.data.subm_id);
+    this.props.getComments(this.props.data.subm_id);
     if (this.props.location.tableArray) {
       const { location } = this.props;
       this.props.onNavDisable(location.tableArray, location.tableIndex);
@@ -197,7 +198,15 @@ class Submission extends Component {
             )}
           </div>
           <div className="col-5">
-            <Comments user={user} subm_id={data.subm_id} />
+            <Comments
+              user={user}
+              subm_id={data.subm_id}
+              comments={this.props.comments}
+              myComment={this.props.myComment}
+              onChangeComment={this.props.onChangeComment}
+              onSubmitComment={this.props.onSubmitComment}
+              onDeleteComment={this.props.onDeleteComment}
+            />
           </div>
         </div>
         {data.subm_type !== "1" ? (

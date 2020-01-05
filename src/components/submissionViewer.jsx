@@ -3,7 +3,8 @@ import Submission from "./submission";
 import {
   getResource,
   postResource,
-  updateStatus
+  updateStatus,
+  deleteResource
 } from "../services/resourceService";
 import { navPreviousNext } from "../utilities/array";
 
@@ -11,6 +12,8 @@ class SubmissionViewer extends Component {
   state = {
     submission: false,
     ratings: { average: "0", myRating: null },
+    comments: "",
+    myComment: "",
     navigationDisabled: { previous: true, next: true }
   };
 
@@ -27,6 +30,7 @@ class SubmissionViewer extends Component {
     } else {
       this.setState({ submission }, () => {
         this.getRatings();
+        this.getComments();
       });
     }
   }
@@ -57,6 +61,42 @@ class SubmissionViewer extends Component {
     this.treatRatings();
   }
 
+  async treatComments() {
+    const comments = await getResource(
+      "comment",
+      this.state.submission.subm_id
+    );
+    this.setState({ comments, myComment: "" });
+  }
+
+  getComments = () => {
+    this.treatComments(this.state.submission.subm_id);
+  };
+
+  async postComment() {
+    const data = {
+      comment: this.state.myComment,
+      id: this.state.submission.subm_id
+    };
+    try {
+      await postResource("comment", data);
+      const myComment = "";
+      this.setState({ myComment });
+      this.getComments();
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
+  async deleteComment(id) {
+    try {
+      await deleteResource("comment", id);
+      this.getComments();
+    } catch (ex) {
+      console.log(ex);
+    }
+  }
+
   async updateStatus() {
     const { subm_id, subm_status } = this.state.submission;
     const data = {
@@ -79,6 +119,19 @@ class SubmissionViewer extends Component {
         this.setState({ ratings });
       }
     });
+  };
+
+  handleChangeComment = e => {
+    const { value: myComment } = e.currentTarget;
+    this.setState({ myComment });
+  };
+
+  handleSubmitComment = () => {
+    this.postComment();
+  };
+
+  handleDeleteComment = id => {
+    this.deleteComment(id);
   };
 
   handleStatusChange = ({ value: status }) => {
@@ -123,6 +176,12 @@ class SubmissionViewer extends Component {
           postRating={this.postRating}
           onRating={this.handleRating}
           ratings={this.state.ratings}
+          getComments={this.getComments}
+          onChangeComment={this.handleChangeComment}
+          onSubmitComment={this.handleSubmitComment}
+          onDeleteComment={this.handleDeleteComment}
+          comments={this.state.comments}
+          myComment={this.state.myComment}
           onStatus={this.handleStatusChange}
         />
       </div>

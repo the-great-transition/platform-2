@@ -18,8 +18,8 @@ class Participant extends Component {
             />
             <TextDisplay
               name="description"
-              label={lang_part.lname}
-              value={toHTML(data.part_lname)}
+              label={lang_part.city}
+              value={toHTML(data.part_city)}
             />
             <TextDisplay
               name="description"
@@ -35,9 +35,10 @@ class Participant extends Component {
           <div className="col-6">
             <TextDisplay
               name="description"
-              label={lang_part.city}
-              value={toHTML(data.part_city)}
+              label={lang_part.lname}
+              value={toHTML(data.part_lname)}
             />
+
             <TextDisplay
               name="description"
               label={lang_part.country}

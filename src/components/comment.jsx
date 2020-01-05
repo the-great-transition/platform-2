@@ -18,7 +18,7 @@ class Comment extends Component {
                   type="button"
                   className="btn btn-sm btn-danger"
                   value={lang_comments.delete}
-                  onClick={() => this.props.onDelete(data.comm_id)}
+                  onClick={() => this.props.onDeleteComment(data.comm_id)}
                 />
               ) : (
                 ""
