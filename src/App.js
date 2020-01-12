@@ -36,10 +36,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App container-fluid">
+      <div className="App container-fluid" style={{ height: "100vh" }}>
         <main>
           {auth.getUser() ? (
-            <React.Fragment>
+            <div className="bg-white" style={{ height: "100vh" }}>
               <Nav user={this.state.user} />
               <ToastContainer autoClose={3000} position="top-center" />
               <Switch>
@@ -93,9 +93,10 @@ class App extends Component {
                 <ProtectedRoute path="/" exact component={Submissions} />
                 <Redirect to="/erratum" />
               </Switch>
-            </React.Fragment>
+            </div>
           ) : (
             <React.Fragment>
+              <ToastContainer autoClose={3000} position="top-center" />
               <Switch>
                 <Route
                   path="/login"

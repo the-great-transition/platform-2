@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Comments from "./comments";
 import TextDisplay from "../common/textDisplay";
 import { toHTML } from "../utilities/string";
 import { submission as lang_submission } from "../language/fr";

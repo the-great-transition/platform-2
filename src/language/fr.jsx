@@ -1,9 +1,24 @@
+export const email = {
+  from: "Comité éditorial GT",
+  forgotPasswordSubject: "Mot de passe oublié",
+  forgotPasswordBody:
+    "Voici le nouveau mot de passe avec lequel vous pouvez vous connecter sur notre plateforme : #/PASSWORD/#",
+  forgotPasswordSent: "Un mot de passe a été envoyé.",
+  forgotPasswordFail: "Échec dans l'envoi du mot de passe.",
+  automatic:
+    "Ce message a été envoyé automatiquement via la plateforme Web du comité éditorial.",
+  website: "lagrandetransition.net"
+};
+
 export const login = {
   login: "Connexion",
   email: "Courriel :",
   password: "Mot de passe :",
-  remember: "Se souvenir de moi :",
-  submit: "Soumettre"
+  fail: "Vos informations sont erronées.",
+  submit: "Soumettre",
+  forgot: "Mot de passe oublié?",
+  sendpassword: "Renvoyer un nouveau mot de passe à l'adresse suivante : ",
+  passwordsent: "Un nouveau mot de passe a été envoyé à votre adresse courriel."
 };
 
 export const nav = {
@@ -324,9 +339,8 @@ export const errors_input = {
 };
 
 export const trslError = item => {
-  item["message"] = errors_input[item.type] + item.context.value;
-  if (item.context.value) item["message"] += item.context.value;
-  else if (item.context.limit) item["message"] += item.context.limit;
+  item["message"] = errors_input[item.type];
+  if (item.context.limit) item["message"] += item.context.limit;
   return item;
 };
 
