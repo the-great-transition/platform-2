@@ -36,10 +36,12 @@ export const nav = {
 };
 
 export const submissions = {
+  loading: "Téléchargement...",
   title: "Soumissions",
   displayed: "affichées",
   submitted: "Soumise le",
   view: "Visionner",
+  reset: "Rétablir",
   create: "Créer",
   description: "Description",
   columns: [
@@ -216,6 +218,8 @@ export const submissionCreate = {
 };
 
 export const panelists = {
+  loading: "Téléchargement...",
+  reset: "Rétablir",
   title: "Panélistes",
   view: "Visionner",
   create: "Ajouter",
