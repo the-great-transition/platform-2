@@ -14,6 +14,7 @@ import Panelists from "./components/panelists";
 import PanelistViewer from "./components/panelistViewer.jsx";
 import PanelistCreate from "./components/panelistCreate";
 import Associate from "./components/associate";
+import Exports from "./components/exports";
 import Admin from "./components/admin";
 import Logout from "./components/logout";
 import Erratum from "./components/erratum";
@@ -82,6 +83,11 @@ class App extends Component {
                   user={this.state.user}
                   path="/associate"
                   component={Associate}
+                />
+                <ProtectedRoute
+                  user={this.state.user}
+                  path="/exports"
+                  component={Exports}
                 />
                 <ProtectedRoute
                   user={this.state.user}

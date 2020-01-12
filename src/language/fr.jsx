@@ -30,6 +30,7 @@ export const nav = {
   associate: "Associer",
   schedule: "Horaire",
   translation: "Traduction",
+  exports: "Exporter",
   admin: "Administration",
   logout: "Déconnexion",
   erratum: "Page introuvable."
@@ -84,12 +85,12 @@ export const submissions = {
     }
   ],
   status: [
-    { label: "Soumises", value: "0" },
-    { label: "Rejetées", value: "1" },
-    { label: "Acceptées", value: "2" },
-    { label: "Confirmées", value: "3" },
-    { label: "Annulées", value: "4" },
-    { label: "Supprimées", value: "99" }
+    { name: "status", label: "Soumises", value: "0" },
+    { name: "status", label: "Rejetées", value: "1" },
+    { name: "status", label: "Acceptées", value: "2" },
+    { name: "status", label: "Confirmées", value: "3" },
+    { name: "status", label: "Annulées", value: "4" },
+    { name: "status", label: "Supprimées", value: "99" }
   ]
 };
 
@@ -252,10 +253,10 @@ export const panelists = {
     }
   ],
   status: [
-    { label: "En attente", value: "0" },
-    { label: "Confirmé·e·s", value: "1" },
-    { label: "Rejeté·e·s", value: "2" },
-    { label: "Supprimé·e·s", value: "99" }
+    { name: "status", label: "En attente", value: "0" },
+    { name: "status", label: "Confirmé·e·s", value: "1" },
+    { name: "status", label: "Rejeté·e·s", value: "2" },
+    { name: "status", label: "Supprimé·e·s", value: "99" }
   ]
 };
 
@@ -293,6 +294,15 @@ export const associate = {
   addComm: "Ajouter une communication",
   addPart: "Ajouter un·e panéliste",
   confirmAssociate: "Confirmer l'ajout"
+};
+
+export const exports = {
+  menu_comments: "Commentaires",
+  optionsLabel: "Sélectionnez un statut de soumission : ",
+  table: "Exporter en tableau",
+  csv: "Exporter en format CSV",
+  print: "Imprimer le tableau",
+  tableComments: "Commentaires : "
 };
 
 export const admin = {

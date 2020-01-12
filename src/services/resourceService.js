@@ -8,9 +8,13 @@ const tokenKey = "token";
 
 http.setJWT(getJWT());
 
-export async function getResource(type, id) {
+export async function getResource(type, id, string) {
   let URL = id ? apiURL + type + "/" + id : apiURL + type;
+  if (string) {
+    URL += "?" + string;
+  }
   try {
+    console.log(URL);
     const response = await http.get(URL);
     return response["data"];
   } catch (ex) {
