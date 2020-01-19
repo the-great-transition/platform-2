@@ -5,7 +5,7 @@ import { associate as lang_associate } from "../language/fr";
 const AssociateMenu = () => {
   return (
     <React.Fragment>
-      <Link className="btn btn-block btn-dark" to="/associate">
+      <Link className="btn btn-block btn-dark" to="/associate/communications">
         {lang_associate.menu_comms}
       </Link>
       <Link className="btn btn-block btn-dark" to="/associate/panelists">

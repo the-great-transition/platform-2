@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Helmet from "react-helmet";
 import SelectInput from "./../common/selectInput";
 import CommentsTable from "./../common/commentsTable";
 import { getResource } from "../services/resourceService";
@@ -47,6 +48,10 @@ class ExportsComments extends Component {
     const { data, comments, displayTable } = this.state;
     return (
       <div>
+        <Helmet>
+          <title>{lang_exports.comms_title}</title>
+        </Helmet>
+        <h2>{lang_exports.comms_header}</h2>
         <div className="row">
           <div className="col">
             <SelectInput

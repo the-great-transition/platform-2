@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
+import ProtectedRoute from "../common/protectedRoute";
 import AssociateMenu from "./associateMenu";
 import AssociateComm from "./associateComm";
 import AssociatePart from "./associatePart";
@@ -12,8 +13,11 @@ const Associate = () => {
       </div>
       <div className="col-md-6">
         <Switch>
-          <Route path="/associate/panelists" component={AssociatePart} />
-          <Route path="/associate" component={AssociateComm} />
+          <ProtectedRoute
+            path="/associate/panelists"
+            component={AssociatePart}
+          />
+          <ProtectedRoute path="/associate" component={AssociateComm} />
         </Switch>
       </div>
     </div>

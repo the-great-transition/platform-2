@@ -39,8 +39,8 @@ class PanelistCreate extends Component {
       minority: "",
       user: null
     },
-    errors: {},
-    users: {}
+    users: {},
+    errors: {}
   };
 
   componentDidMount() {
@@ -240,7 +240,7 @@ class PanelistCreate extends Component {
             <TextArea
               type="text"
               name="bio"
-              rows="4"
+              rows={6}
               value={data.bio}
               label={lang_panelists.bio}
               onChange={this.handleChange}

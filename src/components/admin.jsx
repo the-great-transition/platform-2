@@ -1,5 +1,6 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
+import ProtectedRoute from "../common/protectedRoute";
 import AdminMenu from "./adminMenu";
 import Config from "./config";
 import Users from "./users";
@@ -12,8 +13,8 @@ const Admin = () => {
       </div>
       <div className="col-md-6">
         <Switch>
-          <Route path="/admin/users" component={Users} />
-          <Route path="/admin" component={Config} />
+          <ProtectedRoute path="/admin/users" component={Users} />
+          <ProtectedRoute path="/admin" component={Config} />
         </Switch>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
-import Select from "react-select";
+import SelectInput from "./../common/selectInput";
 import { getResource, postResource } from "../services/resourceService";
 import { toHTML } from "./../utilities/string";
 import { associate as lang_associate } from "../language/fr";
@@ -121,7 +121,9 @@ class AssociateComm extends Component {
         <h2>{lang_associate.comms_header}</h2>
         <div className="row">
           <div className="col">
-            <Select
+            <SelectInput
+              name="panel"
+              label={lang_associate.panel_select}
               options={panelData}
               value={selectedPanel}
               onChange={this.handleSelectedPanel}
@@ -139,7 +141,7 @@ class AssociateComm extends Component {
                     </h5>
                     {lang_associate.average +
                       " : " +
-                      selectedPanel.data.average}
+                      Math.ceil(selectedPanel.data.average * 100) / 100}
                   </div>
                 </div>
                 <div className="row">
@@ -149,7 +151,9 @@ class AssociateComm extends Component {
                         <h5 style={{ marginTop: 20 }}>
                           {lang_associate.addComm}
                         </h5>
-                        <Select
+                        <SelectInput
+                          name="comm"
+                          label={lang_associate.comms_select}
                           options={commData}
                           value={selectedComm}
                           onChange={this.handleSelectedComm}

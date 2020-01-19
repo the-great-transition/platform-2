@@ -50,8 +50,14 @@ class Submission extends Component {
       navigationDisabled,
       user,
       onNavEscape,
+      onModify,
       onRating,
-      onStatus
+      onStatus,
+      comments,
+      myComment,
+      onChangeComment,
+      onSubmitComment,
+      onDeleteComment
     } = this.props;
     const navigationHide =
       navigationDisabled.previous && navigationDisabled.next ? true : false;
@@ -134,9 +140,20 @@ class Submission extends Component {
             <b>{ratings.average}</b>
           </div>
         </div>
-        <div className="row">
+        <div className="row mt-3">
           <div className="col-7">
             <h4>{toHTML(data.subm_title)}</h4>
+            {user.role <= 1 ? (
+              <button
+                className="btn btn-dark mb-3"
+                value="modify"
+                onClick={onModify}
+              >
+                {lang_submission.modify}
+              </button>
+            ) : (
+              ""
+            )}
             <SelectInput
               name="status"
               label={lang_submissionCreate.statusLabel}
@@ -185,6 +202,11 @@ class Submission extends Component {
               label={lang_submission.description}
               value={toHTML(data.subm_description)}
             />
+            <TextDisplay
+              name="information"
+              label={lang_submission.information}
+              value={toHTML(data.subm_info)}
+            />
             {data.chair ? (
               <TextDisplay
                 name="chair"
@@ -201,16 +223,16 @@ class Submission extends Component {
             <Comments
               user={user}
               subm_id={data.subm_id}
-              comments={this.props.comments}
-              myComment={this.props.myComment}
-              onChangeComment={this.props.onChangeComment}
-              onSubmitComment={this.props.onSubmitComment}
-              onDeleteComment={this.props.onDeleteComment}
+              comments={comments}
+              myComment={myComment}
+              onChangeComment={onChangeComment}
+              onSubmitComment={onSubmitComment}
+              onDeleteComment={onDeleteComment}
             />
           </div>
         </div>
         {data.subm_type !== "1" ? (
-          <div className="row">
+          <div className="row mt-3">
             <div className="col-7">
               {data.parts.map((p, k) => {
                 return (
@@ -228,7 +250,7 @@ class Submission extends Component {
         ) : (
           data.comms.map((c, k) => {
             return (
-              <div key={k}>
+              <div className="mt-3" key={k}>
                 <h4>
                   {lang_submission.comm} #{k + 1}
                 </h4>

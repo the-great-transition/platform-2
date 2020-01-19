@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import { Helmet } from "react-helmet";
+import Helmet from "react-helmet";
 import Joi from "joi-browser";
+import Select from "react-select";
 import SelectInput from "../common/selectInput";
 import Input from "../common/input";
 import TextArea from "./../common/textarea";
-import { postResource } from "../services/resourceService";
+import { getResource, postResource } from "../services/resourceService";
 import {
   submissionCreate as lang_submissions,
   trslError
 } from "./../language/fr";
+
+var _ = require("lodash");
 
 class SubmissionCreate extends Component {
   state = {
@@ -21,7 +24,8 @@ class SubmissionCreate extends Component {
       theme: { label: "Aucun", value: 0 },
       level: { label: "Non défini", value: 0 },
       status: { label: "Soumises", value: 0 },
-      info: ""
+      info: "",
+      user: null
     },
     dataReset: {
       type: { label: "Communication", value: 0 },
@@ -32,10 +36,28 @@ class SubmissionCreate extends Component {
       theme: { label: "Aucun", value: 0 },
       level: { label: "Non défini", value: 0 },
       status: { label: "Soumises", value: 0 },
-      info: ""
+      info: "",
+      user: null
     },
+    users: {},
     errors: {}
   };
+
+  componentDidMount() {
+    this.populate();
+  }
+
+  async populate() {
+    const users = await getResource("user");
+    this.setState({ users, errors: {} }, () => {
+      const { data } = this.state;
+      const user = this.state.users.find(e => e.user_id === this.props.user.id)
+        ? this.state.users.find(e => e.user_id === this.props.user.id)
+        : null;
+      data.user = user ? { label: user.user_name, value: user.user_id } : null;
+      this.setState({ data });
+    });
+  }
 
   schema = {
     type: Joi.object(),
@@ -46,7 +68,8 @@ class SubmissionCreate extends Component {
     theme: Joi.object(),
     level: Joi.object(),
     status: Joi.object(),
-    info: Joi.string().allow("")
+    info: Joi.string().allow(""),
+    user: Joi.object()
   };
 
   validate = () => {
@@ -87,7 +110,7 @@ class SubmissionCreate extends Component {
     this.setState({ data });
   };
 
-  handleReset = e => {
+  handleReset = () => {
     const { dataReset } = this.state;
     this.setState({ data: dataReset });
   };
@@ -97,7 +120,20 @@ class SubmissionCreate extends Component {
   };
 
   render() {
-    const { data, errors } = this.state;
+    const { data, users, errors } = this.state;
+    let options = [];
+    if (users && users.length >= 0) {
+      const options_unsorted = users.map(u => {
+        const user = {
+          name: "user",
+          label: u.user_name + " " + u.user_email,
+          value: u.user_id
+        };
+        return user;
+      });
+      options = _.orderBy(options_unsorted, "label", "asc");
+      options = _.concat(options);
+    }
     return (
       <div className="container">
         <Helmet>
@@ -124,7 +160,7 @@ class SubmissionCreate extends Component {
             <TextArea
               type="text"
               name="description"
-              rows="6"
+              rows={6}
               value={data.description}
               label={lang_submissions.description}
               error={errors.description}
@@ -177,11 +213,20 @@ class SubmissionCreate extends Component {
             <TextArea
               type="text"
               name="info"
-              rows="2"
+              rows={2}
               value={data.info}
               label={lang_submissions.infoLabel}
               onChange={this.handleChange}
             />
+            <div className="form-group">
+              <label htmlFor="user">{lang_submissions.user}</label>
+              <Select
+                name="user"
+                options={options}
+                value={data.user}
+                onChange={this.handleSelectChange}
+              />
+            </div>
           </div>
         </div>
         <div className="row">

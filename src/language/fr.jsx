@@ -18,7 +18,9 @@ export const login = {
   submit: "Soumettre",
   forgot: "Mot de passe oublié?",
   sendpassword: "Renvoyer un nouveau mot de passe à l'adresse suivante : ",
-  passwordsent: "Un nouveau mot de passe a été envoyé à votre adresse courriel."
+  passwordsent:
+    "Un nouveau mot de passe a été envoyé à votre adresse courriel.",
+  collective: "Collectif La Grande transition"
 };
 
 export const nav = {
@@ -30,6 +32,7 @@ export const nav = {
   associate: "Associer",
   schedule: "Horaire",
   translation: "Traduction",
+  modify: "Modifier",
   exports: "Exporter",
   admin: "Administration",
   logout: "Déconnexion",
@@ -98,6 +101,7 @@ export const submission = {
   previous: "Précédente",
   next: "Suivante",
   escape: "ESC",
+  modify: "Modifier la soumission",
   submittedon: "En date du ",
   myRating: "Mon évaluation : ",
   averageRating: "Évaluation moyenne : ",
@@ -136,7 +140,8 @@ export const submission = {
   commsnum: "Nombre de communications",
   part: "Panéliste",
   chair: "Animateur·trice",
-  comm: "Communication"
+  comm: "Communication",
+  information: "Informations supplémentaires"
 };
 
 export const part = {
@@ -215,7 +220,8 @@ export const submissionCreate = {
   ],
   submit: "Soumettre",
   reset: "Rétablir",
-  cancel: "Annuler"
+  cancel: "Annuler",
+  user: "Lié·e à quel·le membre?"
 };
 
 export const panelists = {
@@ -286,6 +292,9 @@ export const associate = {
   panelists_title: "Associer des panélistes",
   comms_header: "Associer des communications à des panels",
   panelists_header: "Associer des panélistes à des soumissions",
+  panel_select: "Choisir un panel : ",
+  comms_select: "Choisir une communication : ",
+  panelists_select: "Choisir un·e panéliste",
   comms: "Communications actuelles",
   parts: "Panélistes",
   average: "Évaluation moyenne",
@@ -298,11 +307,22 @@ export const associate = {
 
 export const exports = {
   menu_comments: "Commentaires",
+  menu_emails: "Courriels",
+  comms_header: "Exporter des commentaires",
+  comms_title: "Exporter tous les commentaires selon le statut des soumissions",
   optionsLabel: "Sélectionnez un statut de soumission : ",
   table: "Exporter en tableau",
   csv: "Exporter en format CSV",
   print: "Imprimer le tableau",
   tableComments: "Commentaires : "
+};
+
+export const modify = {
+  menu_submissions: "Soumissions",
+  submissions_header: "Modifier une soumission",
+  submissions_title: "Modifier une soumission",
+  submissions_select: "Choisir une soumission : ",
+  return: "Retour"
 };
 
 export const admin = {

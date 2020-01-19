@@ -147,6 +147,14 @@ class SubmissionViewer extends Component {
     this.getSubmission(object.pathname);
   };
 
+  handleModify = () => {
+    const { submission } = this.state;
+    this.props.history.push({
+      pathname:
+        "/modify/submissions/" + submission.subm_id + "-" + submission.subm_slug
+    });
+  };
+
   handleEscape = () => {
     this.props.history.goBack();
   };
@@ -172,6 +180,7 @@ class SubmissionViewer extends Component {
           onNav={this.handleNav}
           onNavDisable={this.handleNavDisable}
           onNavEscape={this.handleEscape}
+          onModify={this.handleModify}
           getRatings={this.getRatings}
           postRating={this.postRating}
           onRating={this.handleRating}

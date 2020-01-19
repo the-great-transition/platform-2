@@ -144,8 +144,8 @@ class Login extends Component {
           </div>
         </div>
         <div className="row m-0 p-0">
-          <div className="col m-0 p-0">
-            &copy; {new Date().getFullYear()} Collectif La Grande transition
+          <div className="col m-0 p-0 text-center">
+            &copy; {new Date().getFullYear() + " " + lang_login.collective}
           </div>
         </div>
       </div>

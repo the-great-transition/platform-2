@@ -43,6 +43,15 @@ class Nav extends Component {
           </ul>
           <ul className="navbar-nav">
             {parseInt(this.props.user.role) <= 1 ? (
+              <Link className="nav-link" to="/modify">
+                {lang_nav.modify}
+              </Link>
+            ) : (
+              ""
+            )}
+          </ul>
+          <ul className="navbar-nav">
+            {parseInt(this.props.user.role) <= 1 ? (
               <Link className="nav-link" to="/exports">
                 {lang_nav.exports}
               </Link>

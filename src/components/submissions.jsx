@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 import Helmet from "react-helmet";
 import MaterialTable from "material-table";
 import { MTableToolbar } from "material-table";
+import ButtonGroup from "../common/buttonGroup";
 import { getResource } from "../services/resourceService";
 import { toHTML, shorten } from "./../utilities/string";
 import {
   materialTable as lang_table,
   submissions as lang_submissions
 } from "../language/fr";
-import ButtonGroup from "../common/buttonGroup";
 
 class Submissions extends Component {
   state = {
