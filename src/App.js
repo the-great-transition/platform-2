@@ -17,6 +17,7 @@ import Associate from "./components/associate";
 import Modify from "./components/modify";
 import Exports from "./components/exports";
 import Admin from "./components/admin";
+import Confirm from "./components/confirm";
 import Logout from "./components/logout";
 import Erratum from "./components/erratum";
 import auth from "./services/authService";
@@ -40,10 +41,10 @@ class App extends Component {
     return (
       <div className="App container-fluid" style={{ height: "100vh" }}>
         <main>
+          <ToastContainer autoClose={3000} position="top-center" />
           {auth.getUser() ? (
             <div className="bg-white" style={{ height: "100vh" }}>
               <Nav user={this.state.user} />
-              <ToastContainer autoClose={3000} position="top-center" />
               <Switch>
                 <ProtectedRoute
                   user={this.state.user}
@@ -112,19 +113,17 @@ class App extends Component {
               </Switch>
             </div>
           ) : (
-            <React.Fragment>
-              <ToastContainer autoClose={3000} position="top-center" />
-              <Switch>
-                <Route
-                  path="/login"
-                  render={props => {
-                    if (auth.getUser()) return <Redirect to="/" />;
-                    return <Login {...props} />;
-                  }}
-                />
-                <Redirect to="/login" />
-              </Switch>
-            </React.Fragment>
+            <Switch>
+              <Route path="/confirmation/:id" component={Confirm} />
+              <Route
+                path="/login"
+                render={props => {
+                  if (auth.getUser()) return <Redirect to="/" />;
+                  return <Login {...props} />;
+                }}
+              />
+              <Redirect to="/login" />
+            </Switch>
           )}
         </main>
       </div>

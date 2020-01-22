@@ -24,14 +24,6 @@ class PanelistViewer extends Component {
     }
   }
 
-  async updateStatus() {
-    const { part_id, part_status } = this.state.panelist;
-    const data = {
-      id: part_id,
-      status: part_status
-    };
-  }
-
   handleStatusChange = ({ value: status }) => {
     const { panelist } = this.state;
     panelist.part_status = status;

@@ -95,6 +95,7 @@ class Login extends Component {
               src={header}
               width="578"
               style={{ display: "block", margin: "auto" }}
+              alt={lang_login.imagealt}
             />
             <h2>{lang_login.login}</h2>
             <form onSubmit={this.submit} className="pb-3">

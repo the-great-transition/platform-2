@@ -1,11 +1,7 @@
 import React, { Component } from "react";
-import Helmet from "react-helmet";
 import { getResource } from "../services/resourceService";
 import { toHTML } from "./../utilities/string";
-import {
-  exports as lang_exports,
-  submissions as lang_submissions
-} from "./../language/fr";
+import { submissions as lang_submissions } from "./../language/fr";
 
 class ExportEmails extends Component {
   state = {
@@ -22,7 +18,6 @@ class ExportEmails extends Component {
   }
 
   render() {
-    let emails = [];
     const { submissions } = this.state;
     let panelists = [];
     if (submissions && submissions.length >= 0) {
@@ -36,7 +31,7 @@ class ExportEmails extends Component {
                 p.part_fname +
                 " " +
                 p.part_lname +
-                (p.part_email != s.user_email
+                (p.part_email !== s.user_email
                   ? " (" + p.part_email + ")"
                   : "") +
                 ", ";
@@ -51,7 +46,7 @@ class ExportEmails extends Component {
               p.part_fname +
               " " +
               p.part_lname +
-              (p.part_email != s.user_email ? " (" + p.part_email + ")" : "") +
+              (p.part_email !== s.user_email ? " (" + p.part_email + ")" : "") +
               ", ";
           });
           details = details.slice(0, details.length - 2);

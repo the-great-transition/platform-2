@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { toHTML } from "../utilities/string";
-import { exports as lang_exports } from "./../language/fr";
 
 class CommentsTable extends Component {
   state = {};

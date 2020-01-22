@@ -11,6 +11,7 @@ export const email = {
 };
 
 export const login = {
+  imagealt: "La Grande transition 2020 : Construire l'utopie",
   login: "Connexion",
   email: "Courriel :",
   password: "Mot de passe :",
@@ -351,6 +352,11 @@ export const admin = {
     { label: "Traducteur·trice", value: 4 },
     { label: "Membre", value: 5 }
   ]
+};
+
+export const confirm = {
+  indicate:
+    "Veuillez indiquer votre disponibilité pour le(s) panel(s) suivant(s) : "
 };
 
 export const errors_input = {
