@@ -354,10 +354,31 @@ export const admin = {
   ]
 };
 
-export const confirm = {
-  indicate:
-    "Veuillez indiquer votre disponibilité pour le(s) panel(s) suivant(s) : "
-};
+export const confirm = [
+  {
+    imagealt: "La Grande transition 2020 : Construire l'utopie",
+    indicate:
+      "Veuillez indiquer votre disponibilité pour le(s) panel(s) suivant(s) : ",
+    title: "Titre : ",
+    answer: "Réponse : ",
+    answers: [
+      { name: "answers", label: "Oui", value: 1 },
+      { name: "answers", label: "Non", value: 2 },
+      { name: "answers", label: "Peut-être", value: 3 }
+    ]
+  },
+  {
+    imagealt: "The Great Transition 2020: Building Utopias",
+    indicate: "Please indicate your availability for the following panel(s): ",
+    title: "Title: ",
+    answer: "Response: ",
+    answers: [
+      { name: "answers", label: "Yes", value: 1 },
+      { name: "answers", label: "No", value: 2 },
+      { name: "answers", label: "Maybe", value: 3 }
+    ]
+  }
+];
 
 export const errors_input = {
   "any.default": "L'entrée est erronée",
