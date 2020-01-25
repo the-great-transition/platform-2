@@ -106,6 +106,7 @@ class App extends Component {
                   path="/admin"
                   component={Admin}
                 />
+                <Route path="/confirmation/:id" component={Confirm} />
                 <ProtectedRoute path="/logout" component={Logout} />
                 <ProtectedRoute path="/erratum" component={Erratum} />
                 <ProtectedRoute path="/" exact component={Submissions} />

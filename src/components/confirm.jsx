@@ -23,6 +23,7 @@ class Confirm extends Component {
     const splitSlug = splitPath[2].split("-");
     const partID = splitSlug[0];
     const language = splitSlug[1];
+    if (!language) window.location = "/";
     const confirmations = await getResource("confirmation", partID);
     if (confirmations === null) {
     } else {
@@ -31,9 +32,11 @@ class Confirm extends Component {
   }
 
   async postConfirmation(input) {
+    const split = input.name.split("&");
     const data = {
       id: this.state.partID,
-      subm_id: input.name,
+      subm_id: split[0],
+      part_subm_type: split[1],
       confirmation: input.value
     };
     try {
@@ -50,6 +53,16 @@ class Confirm extends Component {
 
   render() {
     const { confirmations, language } = this.state;
+    let panelist = [];
+    let chair = [];
+    if (confirmations.length > 0) {
+      panelist = confirmations.filter(c => {
+        return parseInt(c.part_subm_type) === 0;
+      });
+      chair = confirmations.filter(c => {
+        return parseInt(c.part_subm_type) === 1;
+      });
+    }
     let imagelang = header0;
     if (language) {
       if (parseInt(language) === 0) {
@@ -74,8 +87,13 @@ class Confirm extends Component {
               ""
             )}
             {confirmations.length > 0 ? (
+              <h4 className="text-center">{lang_confirm[language].indicate}</h4>
+            ) : (
+              ""
+            )}
+            {panelist.length > 0 ? (
               <React.Fragment>
-                <h4>{lang_confirm[language].indicate}</h4>
+                <h5>{lang_confirm[language].panelist}</h5>
                 <table className="table table-bordered">
                   <thead>
                     <tr>
@@ -84,13 +102,82 @@ class Confirm extends Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {confirmations.map((c, k) => {
+                    {panelist.map((c, k) => {
                       return (
                         <tr key={k}>
-                          <td>{toHTML(c.subm_title)}</td>
+                          <td>
+                            <p>
+                              [
+                              {parseInt(c.subm_type) === 2
+                                ? lang_confirm[language].workshop
+                                : lang_confirm[language].communication}
+                              ] {toHTML(c.subm_title)}
+                            </p>
+                            <p>
+                              <i>
+                                {c.forms
+                                  ? lang_confirm[language].panel +
+                                    " " +
+                                    toHTML(c.forms.subm_title)
+                                  : ""}
+                              </i>
+                            </p>
+                          </td>
                           <td>
                             <ButtonGroup
-                              name={c.subm_id}
+                              name={c.subm_id + "&" + c.part_subm_type}
+                              array={lang_confirm[language].answers}
+                              selected={parseInt(c.part_subm_confirmation)}
+                              onSelect={this.handleSelect}
+                              style={{
+                                width: "6em"
+                              }}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </React.Fragment>
+            ) : (
+              ""
+            )}
+            {chair.length > 0 ? (
+              <React.Fragment>
+                <h5>{lang_confirm[language].chair}</h5>
+                <table className="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>{lang_confirm[language].title}</th>
+                      <th>{lang_confirm[language].answer}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {chair.map((c, k) => {
+                      return (
+                        <tr key={k}>
+                          <td>
+                            <p>
+                              [
+                              {parseInt(c.subm_type) === 2
+                                ? lang_confirm[language].workshop
+                                : lang_confirm[language].communication}
+                              ] {toHTML(c.subm_title)}
+                            </p>
+                            <p>
+                              <i>
+                                {c.forms
+                                  ? lang_confirm[language].panel +
+                                    " " +
+                                    toHTML(c.forms.subm_title)
+                                  : ""}
+                              </i>
+                            </p>
+                          </td>
+                          <td>
+                            <ButtonGroup
+                              name={c.subm_id + "&" + c.part_subm_type}
                               array={lang_confirm[language].answers}
                               selected={parseInt(c.part_subm_confirmation)}
                               onSelect={this.handleSelect}

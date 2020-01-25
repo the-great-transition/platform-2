@@ -357,9 +357,13 @@ export const admin = {
 export const confirm = [
   {
     imagealt: "La Grande transition 2020 : Construire l'utopie",
-    indicate:
-      "Veuillez indiquer votre disponibilité pour le(s) panel(s) suivant(s) : ",
+    indicate: "Veuillez indiquer votre disponibilité...",
     title: "Titre : ",
+    communication: "Communication",
+    workshop: "Atelier",
+    panel: "Cette communication fera partie du panel : ",
+    panelist: "En tant que panéliste : ",
+    chair: "En tant qu'animateur·trice : ",
     answer: "Réponse : ",
     answers: [
       { name: "answers", label: "Oui", value: 1 },
@@ -369,8 +373,13 @@ export const confirm = [
   },
   {
     imagealt: "The Great Transition 2020: Building Utopias",
-    indicate: "Please indicate your availability for the following panel(s): ",
+    indicate: "Please indicate your availability...",
     title: "Title: ",
+    communication: "Communication",
+    workshop: "Workshop",
+    panel: "This communication will be a part of the panel:",
+    panelist: "As speaker:",
+    chair: "As chair:",
     answer: "Response: ",
     answers: [
       { name: "answers", label: "Yes", value: 1 },
