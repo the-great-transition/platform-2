@@ -22,8 +22,8 @@ class Confirm extends Component {
     const splitPath = pathname.split("/");
     const splitSlug = splitPath[2].split("-");
     const partID = splitSlug[0];
-    const language = splitSlug[1];
-    if (!language) window.location = "/";
+    const language = parseInt(splitSlug[1]) === 2 ? "0" : splitSlug[1];
+    if (!language || parseInt(language) > 2) window.location = "/";
     const confirmations = await getResource("confirmation", partID);
     if (confirmations === null) {
     } else {
