@@ -37,7 +37,13 @@ class Panelist extends Component {
   };
 
   render() {
-    const { data, navigationDisabled, onNavEscape } = this.props;
+    const {
+      data,
+      user,
+      navigationDisabled,
+      onNavEscape,
+      onModify
+    } = this.props;
     const fullname = data.part_fname + " " + data.part_lname;
     const navigationHide =
       navigationDisabled.previous && navigationDisabled.next ? true : false;
@@ -53,6 +59,17 @@ class Panelist extends Component {
                 ? fullname + " (" + data.part_pronouns + ")"
                 : fullname}
             </h3>
+            {user.role <= 1 ? (
+              <button
+                className="btn btn-dark mb-3"
+                value="modify"
+                onClick={onModify}
+              >
+                {lang_panelist.modify}
+              </button>
+            ) : (
+              ""
+            )}
             <h5>
               <i>{lang_panelists.status[data.part_status].label}</i>
             </h5>

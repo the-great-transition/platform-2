@@ -3,6 +3,7 @@ import { Switch } from "react-router-dom";
 import ProtectedRoute from "../common/protectedRoute";
 import ModifyMenu from "./modifyMenu";
 import ModifySubm from "./modifySubm";
+import ModifyPart from "./modifyPart";
 
 class Modify extends Component {
   state = {};
@@ -17,6 +18,11 @@ class Modify extends Component {
             <ProtectedRoute
               path="/modify/submissions"
               component={ModifySubm}
+              user={this.props.user}
+            />
+            <ProtectedRoute
+              path="/modify/panelists"
+              component={ModifyPart}
               user={this.props.user}
             />
             <ProtectedRoute

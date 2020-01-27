@@ -1,5 +1,8 @@
 import jwtDecode from "jwt-decode";
 import http from "./httpService";
+import { toast } from "react-toastify";
+import { css } from "glamor";
+import { auth as lang_auth } from "../language/fr";
 
 const apiURL = process.env.REACT_APP_API_URL + "login";
 const tokenKey = "token";
@@ -13,6 +16,15 @@ export async function login(email, password) {
     return true;
   } catch (ex) {
     console.log(ex);
+    toast(lang_auth.fail, {
+      className: css({
+        color: "#FFFFFF",
+        background: "#550C18 !important"
+      }),
+      progressClassName: css({
+        background: "#FFFFFF"
+      })
+    });
     return false;
   }
 }

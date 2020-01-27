@@ -156,7 +156,8 @@ export const part = {
   minority: "Cette personne est...",
   bio: "Biographie",
   previous: "Précédent·e",
-  next: "Suivant·e"
+  next: "Suivant·e",
+  modify: "Modifier son profil"
 };
 
 export const comments = {
@@ -222,7 +223,7 @@ export const submissionCreate = {
   submit: "Soumettre",
   reset: "Rétablir",
   cancel: "Annuler",
-  user: "Lié·e à quel·le membre?"
+  user: "Liée à quel·le membre?"
 };
 
 export const panelists = {
@@ -320,9 +321,13 @@ export const exports = {
 
 export const modify = {
   menu_submissions: "Soumissions",
+  menu_panelists: "Panélistes",
   submissions_header: "Modifier une soumission",
   submissions_title: "Modifier une soumission",
   submissions_select: "Choisir une soumission : ",
+  panelists_header: "Modifier un·e panéliste",
+  panelists_title: "Modifier un·e panéliste",
+  panelists_select: "Choisir un·e panéliste : ",
   return: "Retour"
 };
 
@@ -421,6 +426,10 @@ export const http = {
   post_fail: "L'entrée n'a pas pu être effectuée.",
   delete_success: "L'entrée a été mise à la corbeille.",
   delete_fail: "L'entrée n'a pas pu être mise à la corbeille."
+};
+
+export const auth = {
+  fail: "La tentative de connexion a échoué."
 };
 
 export const materialTable = {

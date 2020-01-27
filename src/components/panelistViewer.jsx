@@ -51,6 +51,13 @@ class PanelistViewer extends Component {
     return limits;
   };
 
+  handleModify = () => {
+    const { panelist } = this.state;
+    this.props.history.push({
+      pathname: "/modify/panelists/" + panelist.part_id + "-" + panelist.part_id
+    });
+  };
+
   render() {
     return this.state.panelist ? (
       <div className="border border-light shadow" style={{ padding: 10 }}>
@@ -62,6 +69,7 @@ class PanelistViewer extends Component {
           onNav={this.handleNav}
           onNavDisable={this.handleNavDisable}
           onNavEscape={this.handleEscape}
+          onModify={this.handleModify}
           onStatus={this.handleStatusChange}
         />
       </div>
