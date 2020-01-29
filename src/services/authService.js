@@ -36,7 +36,9 @@ export function logout() {
 export function getUser() {
   try {
     const jwt = localStorage.getItem(tokenKey);
-    return jwtDecode(jwt);
+    const decode = jwtDecode(jwt);
+    const datetime = new Date();
+    return decode.exp < Math.round(datetime.getTime() / 1000) ? null : decode;
   } catch (ex) {
     return null;
   }

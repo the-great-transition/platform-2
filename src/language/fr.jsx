@@ -309,14 +309,22 @@ export const associate = {
 
 export const exports = {
   menu_comments: "Commentaires",
+  menu_answers: "Réponses",
   menu_emails: "Courriels",
-  comms_header: "Exporter des commentaires",
-  comms_title: "Exporter tous les commentaires selon le statut des soumissions",
+  comms_helmet: "Exporter des commentaires",
+  comms_header:
+    "Exporter tous les commentaires selon le statut des soumissions",
+  answers_helmet: "Exporter les réponses",
+  answers_header: "Exporter toutes les réponses aux soumissions acceptées",
   optionsLabel: "Sélectionnez un statut de soumission : ",
   table: "Exporter en tableau",
   csv: "Exporter en format CSV",
   print: "Imprimer le tableau",
-  tableComments: "Commentaires : "
+  titlePart: "Titre et panélistes",
+  answers: ["Aucune", "Oui", "Non", "Peut-être"],
+  tableComments: "Commentaires : ",
+  chair: "Animateur·trice : ",
+  nochair: "Besoin de nommer un·e animateur·trice"
 };
 
 export const modify = {

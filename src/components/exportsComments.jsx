@@ -49,7 +49,7 @@ class ExportsComments extends Component {
     return (
       <div>
         <Helmet>
-          <title>{lang_exports.comms_title}</title>
+          <title>{lang_exports.comms_helmet}</title>
         </Helmet>
         <h2>{lang_exports.comms_header}</h2>
         <div className="row">

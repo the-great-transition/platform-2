@@ -10,6 +10,9 @@ class ExportsMenu extends Component {
         <Link className="btn btn-block btn-dark" to="/exports">
           {lang_exports.menu_comments}
         </Link>
+        <Link className="btn btn-block btn-dark" to="/exports/answers">
+          {lang_exports.menu_answers}
+        </Link>
         {parseInt(this.props.user.role) === 0 ? (
           <Link className="btn btn-block btn-dark" to="/exports/emails">
             {lang_exports.menu_emails}
