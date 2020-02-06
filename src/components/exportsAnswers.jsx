@@ -34,7 +34,7 @@ class ExportsAnswers extends Component {
                 return (
                   <React.Fragment>
                     <tr key={k} className="bg-light text-danger text-center">
-                      <th colSpan="4">
+                      <th colSpan="5">
                         {"#" + s.subm_id + " - " + toHTML(s.subm_title)}
                       </th>
                     </tr>
@@ -43,7 +43,7 @@ class ExportsAnswers extends Component {
                         return (
                           <React.Fragment>
                             <tr key={kk}>
-                              <th colSpan="4">{toHTML(c.subm_title)}</th>
+                              <th colSpan="5">{toHTML(c.subm_title)}</th>
                             </tr>
                             {c.parts.map((p, kkk) => {
                               return (
@@ -54,6 +54,7 @@ class ExportsAnswers extends Component {
                                       colors[p.part_subm_confirmation]
                                   }}
                                 >
+                                  <td>{p.part_id}</td>
                                   <td>
                                     {toHTML(p.part_fname + " " + p.part_lname)}
                                   </td>
@@ -83,6 +84,7 @@ class ExportsAnswers extends Component {
                                   colors[p.part_subm_confirmation]
                               }}
                             >
+                              <td>{p.part_id}</td>
                               <td>
                                 {toHTML(p.part_fname + " " + p.part_lname)}
                               </td>
@@ -103,6 +105,7 @@ class ExportsAnswers extends Component {
                             colors[s.chair.part_subm_confirmation]
                         }}
                       >
+                        <td>{s.chair.part_id}</td>
                         <td colSpan="3">
                           {lang_exports.chair +
                             " " +
@@ -116,7 +119,7 @@ class ExportsAnswers extends Component {
                       </tr>
                     ) : (
                       <tr>
-                        <td colSpan="4">{lang_exports.nochair}</td>
+                        <td colSpan="5">{lang_exports.nochair}</td>
                       </tr>
                     )}
                   </React.Fragment>

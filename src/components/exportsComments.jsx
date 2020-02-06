@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Helmet from "react-helmet";
 import SelectInput from "./../common/selectInput";
-import CommentsTable from "./../common/commentsTable";
+import CommentsTable from "./commentsTable";
 import { getResource } from "../services/resourceService";
 import {
   exports as lang_exports,

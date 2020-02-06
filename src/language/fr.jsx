@@ -307,6 +307,29 @@ export const associate = {
   confirmAssociate: "Confirmer l'ajout"
 };
 
+export const schedule = {
+  menu_timeslots: "Plages",
+  menu_rooms: "Salles",
+  menu_rooms_timeslots: "Salles -> Plages",
+  menu_panels_rooms: "Panels -> Salles",
+  menu_panels_timeslots: "Panels -> Plages",
+  menu_schedule: "Horaire",
+  timeslots_helmet: "Plages horaire",
+  timeslots_header: "Gérer les plages horaire",
+  rooms_helmet: "Salles",
+  rooms_header: "Gérer les salles",
+  rooms_timeslots_helmet: "Salles et plages horaire",
+  rooms_timeslots_header: "Associer des salles aux plages horaire",
+  panels_rooms_helmet: "Panels et salles",
+  panels_rooms_header: "Associer des panels à des salles",
+  panels_timeslots_helmet: "Panels et plages horaire",
+  panels_timeslots_header: "Associer des panels à des plages horaire",
+  schedule_helmet: "Horaire",
+  schedule_header: "Visionner l'horaire",
+  timeslot_begin: "Début : ",
+  timeslot_end: "Fin : "
+};
+
 export const exports = {
   menu_comments: "Commentaires",
   menu_answers: "Réponses",
