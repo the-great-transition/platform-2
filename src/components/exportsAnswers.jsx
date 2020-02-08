@@ -34,8 +34,9 @@ class ExportsAnswers extends Component {
                 return (
                   <React.Fragment>
                     <tr key={k} className="bg-light text-danger text-center">
-                      <th colSpan="5">
-                        {"#" + s.subm_id + " - " + toHTML(s.subm_title)}
+                      <th>{"#" + s.subm_id}</th>
+                      <th colSpan="6">
+                        {toHTML(s.subm_title) + " @" + s.user_email}
                       </th>
                     </tr>
                     {s.subm_type === "1" ? (
@@ -43,7 +44,10 @@ class ExportsAnswers extends Component {
                         return (
                           <React.Fragment>
                             <tr key={kk}>
-                              <th colSpan="5">{toHTML(c.subm_title)}</th>
+                              <th>{"##" + c.subm_id}</th>
+                              <th colSpan="6">
+                                {toHTML(c.subm_title) + " @" + s.user_email}
+                              </th>
                             </tr>
                             {c.parts.map((p, kkk) => {
                               return (
@@ -54,12 +58,15 @@ class ExportsAnswers extends Component {
                                       colors[p.part_subm_confirmation]
                                   }}
                                 >
+                                  <td>{"#" + s.subm_id}</td>
                                   <td>{p.part_id}</td>
                                   <td>
                                     {toHTML(p.part_fname + " " + p.part_lname)}
                                   </td>
+
                                   <td>{toHTML(p.part_gender)}</td>
                                   <td>{toHTML(p.part_minority)}</td>
+                                  <td>{p.part_email}</td>
                                   <td>
                                     {
                                       lang_exports.answers[
@@ -84,12 +91,15 @@ class ExportsAnswers extends Component {
                                   colors[p.part_subm_confirmation]
                               }}
                             >
+                              <td>{"#" + s.subm_id}</td>
                               <td>{p.part_id}</td>
                               <td>
                                 {toHTML(p.part_fname + " " + p.part_lname)}
                               </td>
+
                               <td>{toHTML(p.part_gender)}</td>
                               <td>{toHTML(p.part_minority)}</td>
+                              <td>{p.part_email}</td>
                               <td>
                                 {lang_exports.answers[p.part_subm_confirmation]}
                               </td>
@@ -105,6 +115,7 @@ class ExportsAnswers extends Component {
                             colors[s.chair.part_subm_confirmation]
                         }}
                       >
+                        <td>{"#" + s.subm_id}</td>
                         <td>{s.chair.part_id}</td>
                         <td colSpan="3">
                           {lang_exports.chair +
@@ -113,13 +124,15 @@ class ExportsAnswers extends Component {
                               s.chair.part_fname + " " + s.chair.part_lname
                             )}
                         </td>
+                        <td>{s.chair.part_email}</td>
                         <td>
                           {lang_exports.answers[s.chair.part_subm_confirmation]}
                         </td>
                       </tr>
                     ) : (
                       <tr>
-                        <td colSpan="5">{lang_exports.nochair}</td>
+                        <td>{"#" + s.subm_id}</td>
+                        <td colSpan="6">{lang_exports.nochair}</td>
                       </tr>
                     )}
                   </React.Fragment>
