@@ -1,3 +1,63 @@
+export const moment_locale = {
+  months: "Janvier_Février_Mars_Avril_Mai_Juin_Juillet_Août_Septembre_Octobre_Novembre_Décembre".split(
+    "_"
+  ),
+  monthsShort: "Janv._Févr._Mars_Avr._Mai_Juin_Juil._Août_Sept._Oct._Nov._Déc.".split(
+    "_"
+  ),
+  monthsParseExact: true,
+  weekdays: "Dimanche_Lundi_Mardi_Mercredi_Jeudi_Vendredi_Samedi".split("_"),
+  weekdaysShort: "Dim._Lun._Mar._Mer._Jeu._Ven._Sam.".split("_"),
+  weekdaysMin: "Di_Lu_Ma_Me_Je_Ve_Sa".split("_"),
+  weekdaysParseExact: true,
+  longDateFormat: {
+    LT: "HH:mm",
+    LTS: "HH:mm:ss",
+    L: "DD/MM/YYYY",
+    LL: "D MMMM YYYY",
+    LLL: "D MMMM YYYY HH:mm",
+    LLLL: "dddd D MMMM YYYY HH:mm"
+  },
+  calendar: {
+    sameDay: "[Aujourd’hui à] LT",
+    nextDay: "[Demain à] LT",
+    nextWeek: "dddd [à] LT",
+    lastDay: "[Hier à] LT",
+    lastWeek: "dddd [dernier à] LT",
+    sameElse: "L"
+  },
+  relativeTime: {
+    future: "dans %s",
+    past: "il y a %s",
+    s: "quelques secondes",
+    m: "une minute",
+    mm: "%d minutes",
+    h: "une heure",
+    hh: "%d heures",
+    d: "un jour",
+    dd: "%d jours",
+    M: "un mois",
+    MM: "%d mois",
+    y: "un an",
+    yy: "%d ans"
+  },
+  dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
+  ordinal: function(number) {
+    return number + (number === 1 ? "er" : "");
+  },
+  meridiemParse: /PD|MD/,
+  isPM: function(input) {
+    return input.charAt(0) === "M";
+  },
+  meridiem: function(hours, minutes, isLower) {
+    return hours < 12 ? "PD" : "MD";
+  },
+  week: {
+    dow: 1,
+    doy: 4
+  }
+};
+
 export const email = {
   from: "Comité éditorial GT",
   forgotPasswordSubject: "Mot de passe oublié",
@@ -308,6 +368,10 @@ export const associate = {
 };
 
 export const schedule = {
+  submit: "Soumettre",
+  modify: "Modifier",
+  cancel: "Annuler",
+  delete: "Supprimer",
   menu_timeslots: "Plages",
   menu_rooms: "Salles",
   menu_rooms_timeslots: "Salles -> Plages",
@@ -316,18 +380,46 @@ export const schedule = {
   menu_schedule: "Horaire",
   timeslots_helmet: "Plages horaire",
   timeslots_header: "Gérer les plages horaire",
+  timeslots_date: "Date",
+  timeslots_begin: "Début",
+  timeslots_end: "Fin",
+  timeslot_date: "Date : ",
+  timeslot_begin: "Début : ",
+  timeslot_end: "Fin : ",
+  timeslot_new: "Nouveau bloc horaire",
+  timeslot_modify: "Modifier un bloc horaire",
   rooms_helmet: "Salles",
   rooms_header: "Gérer les salles",
   rooms_timeslots_helmet: "Salles et plages horaire",
   rooms_timeslots_header: "Associer des salles aux plages horaire",
+  rooms_location: "Lieu",
+  rooms_capacity: "Capacité",
+  rooms_type: "Type",
+  rooms_type_options: [
+    { name: "type", value: 0, label: "Mobilier amovible" },
+    { name: "type", value: 1, label: "Mobilier fixe" }
+  ],
+  rooms_av: "Audiovisuel",
+  rooms_av_options: [
+    { name: "av", value: 0, label: "Audio seulement" },
+    { name: "av", value: 1, label: "Vidéo seulement" },
+    { name: "av", value: 2, label: "Audiovisuel sans caméra" },
+    { name: "av", value: 3, label: "Audiovisuel avec caméra" }
+  ],
+  rooms_comments: "Commentaires",
+  room_new: "Nouvelle salle",
+  room_modify: "Modifier une salle",
+  room_location: "Lieu (nom de la salle) : ",
+  room_capacity: "Capacité : ",
+  room_type: "Type : ",
+  room_av: "Audiovisuel?",
+  room_comments: "Commentaires : ",
   panels_rooms_helmet: "Panels et salles",
   panels_rooms_header: "Associer des panels à des salles",
   panels_timeslots_helmet: "Panels et plages horaire",
   panels_timeslots_header: "Associer des panels à des plages horaire",
   schedule_helmet: "Horaire",
-  schedule_header: "Visionner l'horaire",
-  timeslot_begin: "Début : ",
-  timeslot_end: "Fin : "
+  schedule_header: "Visionner l'horaire"
 };
 
 export const exports = {
