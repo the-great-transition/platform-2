@@ -160,7 +160,7 @@ class ScheduleRooms extends Component {
               onChange={this.handleChange}
             />
             <button
-              className="btn btn-block btn-success mb-3"
+              className="btn btn-block btn-success mb-2"
               onClick={this.handleSubmit}
             >
               {lang_schedule.submit}
@@ -196,7 +196,9 @@ class ScheduleRooms extends Component {
                         <React.Fragment key={k}>
                           <tr
                             className={
-                              id === r.room_id ? "text-primary bg-light" : ""
+                              id === r.room_id
+                                ? "text-primary font-weight-bold bg-light"
+                                : ""
                             }
                           >
                             <td>{r.room_location}</td>

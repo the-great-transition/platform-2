@@ -115,14 +115,14 @@ class ScheduleTimeslots extends Component {
     const { id, date, begin, end } = this.state.insert;
     const data = {
       time_date: date,
-      time_begin: begin.format("hh:mm"),
-      time_end: end.format("hh:mm")
+      time_begin: begin.format("HH:mm"),
+      time_end: end.format("HH:mm")
     };
     try {
       const string = id === null ? "time" : "time/" + id;
       await postResource(string, data);
       this.populate();
-      this.setState({ newmodify: "new" });
+      this.handleCancel();
     } catch (ex) {
       console.log(ex);
     }
@@ -190,7 +190,7 @@ class ScheduleTimeslots extends Component {
               />
             </div>
             <button
-              className="btn btn-block btn-success mb-3"
+              className="btn btn-block btn-success mb-2"
               onClick={this.handleSubmit}
             >
               {lang_schedule.submit}
@@ -242,7 +242,7 @@ class ScheduleTimeslots extends Component {
                                 key={k}
                                 className={
                                   id === t.time_id
-                                    ? "text-primary bg-light"
+                                    ? "text-primary font-weight-bold bg-light"
                                     : ""
                                 }
                               >
