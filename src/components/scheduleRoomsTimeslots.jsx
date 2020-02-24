@@ -8,8 +8,10 @@ import {
   deleteResource
 } from "../services/resourceService";
 import { toHTML, shorten } from "./../utilities/string";
-import { schedule as lang_schedule } from "../language/fr";
-import { register } from "./../serviceWorker";
+import {
+  schedule as lang_schedule,
+  submission as lang_submission
+} from "../language/fr";
 
 var moment = require("moment");
 var _ = require("lodash");
@@ -514,7 +516,15 @@ class ScheduleRoomsTimeslots extends Component {
                                   }
                                 >
                                   {r[c.id] && r[c.id].subm_meta
-                                    ? toHTML(shorten(r[c.id].subm_title, 100))
+                                    ? "#" +
+                                      r[c.id].subm_id +
+                                      " " +
+                                      toHTML(shorten(r[c.id].subm_title, 100)) +
+                                      " [" +
+                                      lang_submission.theme.lookup[
+                                        r[c.id].subm_theme
+                                      ] +
+                                      "]"
                                     : r[c.id]
                                     ? lang_schedule.rooms_timeslots_empty
                                     : ""}
